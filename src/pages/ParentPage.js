@@ -28,9 +28,9 @@ import Label from '../components/label';
 import Iconify from '../components/iconify';
 import Scrollbar from '../components/scrollbar';
 // sections
-import { ParentListHead, PatientListToolbar } from '../sections/@dashboard/parent';
+import { ParentListHead, ParentListToolbar } from '../sections/@dashboard/parent';
 import { store } from '../redux/Store';
-import { fetchParent } from '../redux/parentsReducer';
+import { fetchParents } from '../redux/parentsReducer';
 
 
 const TABLE_HEAD = [
@@ -78,7 +78,7 @@ export default function PatientPage() {
 
   useEffect(() => {
     // Fetch doctor and patient lists when component mounts
-    store.dispatch(fetchParent());
+    store.dispatch(fetchParents());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [store.dispatch]);
 
@@ -172,7 +172,7 @@ export default function PatientPage() {
         </Stack>
 
         <Card>
-          <PatientListToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} />
+          <ParentListToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} />
 
           <Scrollbar>
             <TableContainer sx={{ minWidth: 800 }}>

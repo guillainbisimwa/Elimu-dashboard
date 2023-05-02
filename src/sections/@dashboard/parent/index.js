@@ -1,2 +1,2 @@
-export { default as PatientListHead } from './ParentListHead';
-export { default as PatientListToolbar } from './ParentListToolbar';
+export { default as ParentListHead } from './ParentListHead';
+export { default as ParentListToolbar } from './ParentListToolbar';

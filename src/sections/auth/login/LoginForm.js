@@ -10,8 +10,8 @@ import { login } from '../../../redux/loginAction';
 
 import {store} from '../../../redux/Store';
 
-import { fetchDoctors } from '../../../redux/ecoleReducer';
-import { fetchPatients } from '../../../redux/parentsReducer';
+import { fetchEcole } from '../../../redux/ecoleReducer';
+import { fetchParents } from '../../../redux/parentsReducer';
 
 export default function LoginForm() {
   const dispatch = useDispatch();
@@ -26,8 +26,8 @@ export default function LoginForm() {
   const handleClick = (e) => {
     e.preventDefault();
     
-    store.dispatch(fetchDoctors());
-    store.dispatch(fetchPatients());
+    store.dispatch(fetchEcole());
+    store.dispatch(fetchParents());
 
     dispatch(login(email, password));
   };

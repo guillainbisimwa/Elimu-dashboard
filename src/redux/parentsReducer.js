@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchParent = createAsyncThunk(
-  "parents/fetchParent",
+export const fetchParents = createAsyncThunk(
+  "parents/fetchParents",
   async () => {
     const response = await axios.get(
       "https://elimu-backend.netlify.com/api/parents"
@@ -21,16 +21,16 @@ const parentsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchParent.pending, (state) => {
+      .addCase(fetchParents.pending, (state) => {
         state.isLoadingParent = true;
         state.errorParent = null;
       })
-      .addCase(fetchParent.fulfilled, (state, action) => {
+      .addCase(fetchParents.fulfilled, (state, action) => {
         state.isLoadingParent = false;
         state.parentList = action.payload;
         state.errorParent = null;
       })
-      .addCase(fetchParent.rejected, (state, action) => {
+      .addCase(fetchParents.rejected, (state, action) => {
         state.isLoadingParent = false;
         state.errorParent = action.errorParent.message;
       });
