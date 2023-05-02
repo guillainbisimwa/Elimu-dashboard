@@ -74,7 +74,7 @@ function applySortFilter(array, comparator, query) {
 
 export default function PatientPage() {
   const navigate = useNavigate();
-  const { patientList } = useSelector((state) => state.patients);
+  const { parentList } = useSelector((state) => state.parents);
 
   useEffect(() => {
     // Fetch doctor and patient lists when component mounts
@@ -116,7 +116,7 @@ export default function PatientPage() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = patientList.map((n) => n.name);
+      const newSelecteds = parentList.map((n) => n.name);
       setSelected(newSelecteds);
       return;
     }
@@ -152,9 +152,9 @@ export default function PatientPage() {
     setFilterName(event.target.value);
   };
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - patientList.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - parentList.length) : 0;
 
-  const filteredUsers = applySortFilter(patientList, getComparator(order, orderBy), filterName);
+  const filteredUsers = applySortFilter(parentList, getComparator(order, orderBy), filterName);
 
   const isNotFound = !filteredUsers.length && !!filterName;
 
@@ -181,7 +181,7 @@ export default function PatientPage() {
                   order={order}
                   orderBy={orderBy}
                   headLabel={TABLE_HEAD}
-                  rowCount={patientList.length}
+                  rowCount={parentList.length}
                   numSelected={selected.length}
                   onRequestSort={handleRequestSort}
                   onSelectAllClick={handleSelectAllClick}
@@ -266,7 +266,7 @@ export default function PatientPage() {
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
-            count={patientList.length}
+            count={parentList.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}

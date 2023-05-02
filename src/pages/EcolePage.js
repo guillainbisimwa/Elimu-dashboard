@@ -76,7 +76,7 @@ function applySortFilter(array, comparator, query) {
 export default function EcolePage() {
   const navigate = useNavigate();
 
-  const { doctorList } = useSelector((state) => state.doctors);
+  const { ecoleList } = useSelector((state) => state.ecole);
 
   useEffect(() => {
     // Fetch doctor and patient lists when component mounts
@@ -117,7 +117,7 @@ export default function EcolePage() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = doctorList.map((n) => n.name);
+      const newSelecteds = ecoleList.map((n) => n.name);
       setSelected(newSelecteds);
       return;
     }
@@ -153,9 +153,9 @@ export default function EcolePage() {
     setFilterName(event.target.value);
   };
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - doctorList.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - ecoleList.length) : 0;
 
-  const filteredUsers = applySortFilter(doctorList, getComparator(order, orderBy), filterName);
+  const filteredUsers = applySortFilter(ecoleList, getComparator(order, orderBy), filterName);
 
   const isNotFound = !filteredUsers.length && !!filterName;
 
@@ -182,7 +182,7 @@ export default function EcolePage() {
                   order={order}
                   orderBy={orderBy}
                   headLabel={TABLE_HEAD}
-                  rowCount={doctorList.length}
+                  rowCount={ecoleList.length}
                   numSelected={selected.length}
                   onRequestSort={handleRequestSort}
                   onSelectAllClick={handleSelectAllClick}
@@ -267,7 +267,7 @@ export default function EcolePage() {
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
-            count={doctorList.length}
+            count={ecoleList.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}

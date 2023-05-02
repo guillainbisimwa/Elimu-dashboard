@@ -19,7 +19,14 @@ export const fetchEcole = createAsyncThunk(
 const ecoleSlice = createSlice({
   name: "ecole",
   initialState: {
-    ecoleList: [],
+    ecoleList: [
+      {
+        name: "Institut Z",
+        phones: ["+2145654852", "+243951753"],
+        imgUrl: null,
+        timestamp: "2023-01-01",
+      }
+    ],
     isLoadingEcole: false,
     errorEcole: null,
   },

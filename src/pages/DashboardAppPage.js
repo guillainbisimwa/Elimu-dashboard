@@ -10,14 +10,14 @@ import { store } from '../redux/Store';
 import { fetchEcole } from '../redux/ecoleReducer';
 import { fetchParents } from '../redux/parentsReducer';
 
-function countItems(array) {
-  return array.length
+function countItems(ar) {
+  return ar.length
 }
 
 export default function DashboardAppPage() {
 
   const { ecoleList } = useSelector((state) => state.ecole);
-  const { parentList } = useSelector((state) => state.patients);
+  const { parentList } = useSelector((state) => state.parents);
 
   useEffect(() => {
     // Fetch doctor and patient lists when component mounts

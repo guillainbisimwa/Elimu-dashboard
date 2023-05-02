@@ -14,7 +14,24 @@ export const fetchParents = createAsyncThunk(
 const parentsSlice = createSlice({
   name: "parents",
   initialState: {
-    parentList: [],
+    parentList: [
+      {
+        pseudo: "Parent 1",
+        name: "Parent 1",
+        phones: ["+24312345678", "+243789456123"],
+        address: "Q. Katoyi",
+        imgUrl: null,
+        timestamp: "2023-01-01"
+      },
+      {
+        pseudo: "Parent 2",
+        name: "Parent 1",
+        phones: ["+24312345678", "+243789456123"],
+        address: "Q. Katoyi",
+        imgUrl: null,
+        timestamp: "2023-01-01"
+      }
+    ],
     isLoadingParent: false,
     errorParent: null,
   },

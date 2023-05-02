@@ -8,7 +8,7 @@ console.log("userData", userData);
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    user: userData ? userData.user : null, // Use user data from LocalStorage or set to null
+    user: userData ? userData.user : {"user":"token"}, // null Use user data from LocalStorage or set to null
     error: null,
     isLoading: false,
   },
