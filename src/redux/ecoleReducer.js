@@ -21,6 +21,7 @@ const ecoleSlice = createSlice({
   initialState: {
     ecoleList: [
       {
+        id: "123",
         name: "Institut Z",
         phones: ["+2145654852", "+243951753"],
         imgUrl: null,

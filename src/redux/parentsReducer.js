@@ -16,6 +16,7 @@ const parentsSlice = createSlice({
   initialState: {
     parentList: [
       {
+        id: "456",
         pseudo: "Parent 1",
         name: "Parent 1",
         phones: ["+24312345678", "+243789456123"],
@@ -24,6 +25,7 @@ const parentsSlice = createSlice({
         timestamp: "2023-01-01"
       },
       {
+        id: "789",
         pseudo: "Parent 2",
         name: "Parent 1",
         phones: ["+24312345678", "+243789456123"],
