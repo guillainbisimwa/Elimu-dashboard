@@ -22,9 +22,12 @@ const ecoleSlice = createSlice({
     ecoleList: [
       {
         id: "123",
-        name: "Institut Z",
+        name: "Institut Mwanga",
         phones: ["+2145654852", "+243951753"],
         imgUrl: null,
+        email:"test@me.com",
+        address:"Q. Mapendo",
+        website: "www.test.me",
         timestamp: "2023-01-01",
       }
     ],

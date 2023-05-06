@@ -26,7 +26,6 @@ import {
 import { LoadingButton } from '@mui/lab';
 
 // components
-import Label from '../components/label';
 import Iconify from '../components/iconify';
 import Scrollbar from '../components/scrollbar';
 // sections
@@ -38,10 +37,9 @@ import { store } from '../redux/Store';
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
   { id: 'email', label: 'Email', alignRight: false },
-  { id: 'phoneNumber', label: 'Phone Number', alignRight: false },
+  { id: 'phones', label: 'Phones', alignRight: false },
   { id: 'address', label: 'Address', alignRight: false },
-  { id: 'designation', label: 'Designation', alignRight: false },
-  { id: 'practiceNumber', label: 'Practice Number', alignRight: false },
+  { id: 'website', label: 'Website', alignRight: false },
   { id: '' },
 ];
 
@@ -208,7 +206,7 @@ export default function EcolePage() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, email, phoneNumber, address, designation, practiceNumber } = row;
+                    const { id, name, email, phones, address, website } = row;
                     const selectedUser = selected.indexOf(name) !== -1;
 
                     return (
@@ -231,14 +229,12 @@ export default function EcolePage() {
 
                          <TableCell align="left">{email}</TableCell>
 
-                         <TableCell align="left">{phoneNumber}</TableCell>
+                         <TableCell align="left">{phones}</TableCell>
 
                          <TableCell align="left">{address}</TableCell>
-                         <TableCell align="left">
-                          <Label color={(designation === 'GP' && 'error') || 'success'}>{designation}</Label>
-                        </TableCell> 
-                         <TableCell align="center">{practiceNumber}</TableCell>
 
+                         <TableCell align="left">{website}</TableCell>
+                        
                         <TableCell align="right">
                           <IconButton size="large" color="inherit" onClick={(e)=>{
                               handleOpenMenu(e, row);
