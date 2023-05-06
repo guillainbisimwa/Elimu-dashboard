@@ -23,6 +23,8 @@ import {
   TableContainer,
   TablePagination,
 } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
+
 // components
 import Label from '../components/label';
 import Iconify from '../components/iconify';
@@ -162,14 +164,31 @@ export default function EcolePage() {
   return (
     <>
       <Helmet>
-        <title> Doctors | Elimu </title>
+        <title> Ecole | Elimu </title>
       </Helmet>
 
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={1}>
           <Typography variant="h4" gutterBottom>
-            Doctors
+            Ecole
           </Typography>
+
+          <Stack direction="row" alignItems="center" justifyContent="space-between" gap={1} mb={1}>
+           
+
+            <LoadingButton size='large'  variant="contained" color='error' startIcon={<IconButton size="large" color="success" >
+                            <Iconify icon={'eva:more-vertical-fill'} />
+                          </IconButton>} >
+              Classes
+            </LoadingButton>
+
+            <LoadingButton size='large'  variant="contained" startIcon={<IconButton size="large" color="success" >
+                            <Iconify icon={'eva:more-vertical-fill'} />
+                          </IconButton>} >
+              Annee scolaire
+            </LoadingButton>
+          </Stack>
+          
         </Stack>
 
         <Card>

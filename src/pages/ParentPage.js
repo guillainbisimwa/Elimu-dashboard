@@ -23,6 +23,8 @@ import {
   TableContainer,
   TablePagination,
 } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
+
 // components
 import Label from '../components/label';
 import Iconify from '../components/iconify';
@@ -167,8 +169,14 @@ export default function PatientPage() {
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={1}>
           <Typography variant="h4" gutterBottom>
-            Patients
+            Parents
           </Typography>
+
+          <LoadingButton color='error' size='large'  variant="contained" startIcon={<IconButton size="large" color="success" >
+                <Iconify icon={'eva:more-vertical-fill'} />
+              </IconButton>} >
+              Ajouter un parent
+            </LoadingButton>
         </Stack>
 
         <Card>

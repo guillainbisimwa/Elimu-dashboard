@@ -21,6 +21,23 @@ const navConfig = [
     path: '/dashboard/parent',
     icon: icon('ic_analytics'),
   },
+
+  {
+    title: 'eleves',
+    path: '/dashboard/eleves',
+    icon: icon('ic_analytics'),
+  },
+  {
+    title: 'payment',
+    path: '/dashboard/payment',
+    icon: icon('ic_analytics'),
+  },
+
+  {
+    title: 'communication',
+    path: '/dashboard/communication',
+    icon: icon('ic_analytics'),
+  },
   
 ];
 
