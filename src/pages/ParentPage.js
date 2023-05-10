@@ -26,7 +26,6 @@ import {
 import { LoadingButton } from '@mui/lab';
 
 // components
-import Label from '../components/label';
 import Iconify from '../components/iconify';
 import Scrollbar from '../components/scrollbar';
 // sections
@@ -37,11 +36,9 @@ import { fetchParents } from '../redux/parentsReducer';
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
-  { id: 'email', label: 'Email', alignRight: false },
-  { id: 'phoneNumber', label: 'Phone Number', alignRight: false },
-  { id: 'age', label: 'Age', alignRight: false },
-  { id: 'gender', label: 'Gender', alignRight: false },
-  { id: 'weight', label: 'Weight', alignRight: false },
+  { id: 'pseudo', label: 'Pseudo', alignRight: false },
+  { id: 'phones', label: 'Phone Number', alignRight: false },
+  { id: 'address', label: 'Address', alignRight: false },
   { id: '' },
 ];
 
@@ -163,7 +160,7 @@ export default function PatientPage() {
   return (
     <>
       <Helmet>
-        <title> Patients | Elimu </title>
+        <title> Parent | Elimu </title>
       </Helmet>
 
       <Container>
@@ -196,7 +193,8 @@ export default function PatientPage() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, email, phoneNumber, age, gender, weight } = row;
+                    const { id, name, pseudo, phones, address } = row;
+
                     const selectedUser = selected.indexOf(name) !== -1;
 
                     return (
@@ -217,15 +215,12 @@ export default function PatientPage() {
                           </Stack>
                         </TableCell>
 
-                         <TableCell align="left">{email}</TableCell>
+                         <TableCell align="left">{pseudo}</TableCell>
 
-                         <TableCell align="left">{phoneNumber}</TableCell>
+                         <TableCell align="left">{phones}</TableCell>
 
-                         <TableCell align="left">{age}</TableCell>
-                         <TableCell align="left">
-                          <Label color={(gender === 'Male' && 'error') || 'success'}>{(gender === 'Male' && 'M') || 'F'}</Label>
-                        </TableCell> 
-                         <TableCell align="center">{weight}</TableCell>
+                         <TableCell align="left">{address}</TableCell>
+                         
 
                         <TableCell align="right">
                           <IconButton size="large" color="inherit" onClick={(e)=>{
