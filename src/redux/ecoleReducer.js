@@ -32,7 +32,7 @@ const ecoleSlice = createSlice({
       },
       {
         id: "1234",
-        name: "Institut Mwanga",
+        name: "Institut Bakanja",
         phones: ["+2145654852", "+243951753"],
         imgUrl: null,
         email:"test@me.com",

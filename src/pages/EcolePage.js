@@ -22,6 +22,7 @@ import {
   IconButton,
   TableContainer,
   TablePagination,
+  Modal,
 } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 
@@ -84,6 +85,8 @@ export default function EcolePage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [store.dispatch]);
 
+  const [anneeScolaireModal, setAnneeScolaireModal] = useState(null);
+
   const [open, setOpen] = useState(null);
 
   const [page, setPage] = useState(0);
@@ -107,6 +110,14 @@ export default function EcolePage() {
 
   const handleCloseMenu = () => {
     setOpen(null);
+  };
+
+  const handleOpenModaAS= () => {
+    setAnneeScolaireModal(true);
+  };
+
+  const handleCloseModalAS = () => {
+    setAnneeScolaireModal(null);
   };
 
   const handleRequestSort = (event, property) => {
@@ -175,14 +186,14 @@ export default function EcolePage() {
            
 
             <LoadingButton size='large'  variant="contained" color='error' startIcon={<IconButton size="large" color="success" >
-                            <Iconify icon={'eva:more-vertical-fill'} />
-                          </IconButton>} >
+                <Iconify icon={'eva:more-vertical-fill'} /></IconButton>}
+                >
               Classes
             </LoadingButton>
 
             <LoadingButton size='large'  variant="contained" startIcon={<IconButton size="large" color="success" >
-                            <Iconify icon={'eva:more-vertical-fill'} />
-                          </IconButton>} >
+              <Iconify icon={'eva:more-vertical-fill'} /></IconButton>} 
+              onClick={() => handleOpenModaAS()} >
               Annee scolaire
             </LoadingButton>
           </Stack>
@@ -318,6 +329,18 @@ export default function EcolePage() {
           Voir Details
         </MenuItem>
       </Popover>
+
+      <Modal
+         open={Boolean(anneeScolaireModal)}
+        onClose={handleCloseModalAS}
+        
+      >
+        <Card>
+        <Typography variant="body2"> tR</Typography>
+
+        </Card>
+
+      </Modal>
     </>
   );
 }
