@@ -22,9 +22,10 @@ import {
   IconButton,
   TableContainer,
   TablePagination,
-  Modal,
+  Dialog,
 } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
+import { styled } from '@mui/material/styles';
 
 // components
 import Iconify from '../components/iconify';
@@ -33,7 +34,7 @@ import Scrollbar from '../components/scrollbar';
 import { EcoleListHead, EcoleListToolbar } from '../sections/@dashboard/ecole';
 import { fetchEcole } from '../redux/ecoleReducer';
 import { store } from '../redux/Store';
-
+import { AddClassForm } from '../sections/@dashboard/classe';
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
@@ -43,6 +44,23 @@ const TABLE_HEAD = [
   { id: 'website', label: 'Website', alignRight: false },
   { id: '' },
 ];
+
+
+const StyledRoot = styled('div')(({ theme }) => ({
+  [theme.breakpoints.up('md')]: {
+    display: 'flex',
+  },
+}));
+
+const StyledContent = styled('div')(({ theme }) => ({
+  maxWidth: 480,
+  margin: 'auto',
+  minHeight: '50vh',
+  display: 'flex',
+  justifyContent: 'center',
+  flexDirection: 'column',
+  padding: theme.spacing(12, 0),
+}));
 
 
 function descendingComparator(a, b, orderBy) {
@@ -330,17 +348,22 @@ export default function EcolePage() {
         </MenuItem>
       </Popover>
 
-      <Modal
-         open={Boolean(anneeScolaireModal)}
+      <Dialog
+        open={Boolean(anneeScolaireModal)}
         onClose={handleCloseModalAS}
-        
+        maxWidth="md"
+        fullWidth
       >
         <Card>
-        <Typography variant="body2"> tR</Typography>
-
+          <StyledRoot>
+            <Container maxWidth="md">
+              <StyledContent>
+                <AddClassForm />
+              </StyledContent>
+            </Container>
+          </StyledRoot>
         </Card>
-
-      </Modal>
+      </Dialog>
     </>
   );
 }
