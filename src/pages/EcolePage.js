@@ -312,10 +312,10 @@ export default function EcolePage() {
         <MenuItem  onClick={()=> {
           console.log(currentDoctor);
           const params = { doctorObject: currentDoctor };
-          navigate('/dashboard/doctor-profile',  { state: params });
+          navigate('/dashboard/ecole-details',  { state: params });
         }}>
           <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }} />
-          View profile
+          Voir Details
         </MenuItem>
       </Popover>
     </>
