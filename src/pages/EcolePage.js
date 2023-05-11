@@ -23,6 +23,8 @@ import {
   TableContainer,
   TablePagination,
   Dialog,
+  DialogTitle,
+  DialogContent,
 } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import { styled } from '@mui/material/styles';
@@ -53,7 +55,7 @@ const StyledRoot = styled('div')(({ theme }) => ({
 }));
 
 const StyledContent = styled('div')(({ theme }) => ({
-  maxWidth: 480,
+  maxWidth: 400,
   margin: 'auto',
   minHeight: '50vh',
   display: 'flex',
@@ -354,15 +356,21 @@ export default function EcolePage() {
         maxWidth="md"
         fullWidth
       >
-        <Card>
-          <StyledRoot>
-            <Container maxWidth="md">
-              <StyledContent>
-                <AddClassForm />
-              </StyledContent>
-            </Container>
-          </StyledRoot>
-        </Card>
+        <DialogTitle>
+          <Typography>Annee Scolaire</Typography>
+        </DialogTitle>
+        <DialogContent>
+          
+            <StyledRoot>
+              <Container maxWidth="md">
+                <StyledContent>
+                  <AddClassForm />
+                </StyledContent>
+              </Container>
+            </StyledRoot>
+          
+        </DialogContent>
+        
       </Dialog>
     </>
   );
