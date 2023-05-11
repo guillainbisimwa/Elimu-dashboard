@@ -22,6 +22,9 @@ import {
   IconButton,
   TableContainer,
   TablePagination,
+  Dialog,
+  DialogTitle,
+  DialogContent,
 } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 
@@ -81,6 +84,8 @@ export default function PatientPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [store.dispatch]);
 
+  
+  const [parentModal, setParentModal] = useState(null);
 
   const [open, setOpen] = useState(null);
 
@@ -102,6 +107,16 @@ export default function PatientPage() {
     setOpen(event.currentTarget);
     setCurrentPatient(JSON.stringify(patientObject))
   };
+
+  
+  const handleOpenModaParent= () => {
+    setParentModal(true);
+  };
+
+  const handleCloseModaParent = () => {
+    setParentModal(null);
+  };
+
 
   const handleCloseMenu = () => {
     setOpen(null);
@@ -169,9 +184,8 @@ export default function PatientPage() {
             Parents
           </Typography>
 
-          <LoadingButton color='error' size='large'  variant="contained" startIcon={<IconButton size="large" color="success" >
-                <Iconify icon={'eva:more-vertical-fill'} />
-              </IconButton>} >
+          <LoadingButton color='error' size='large'  variant="contained" 
+           onClick={() => handleOpenModaParent()}>
               Ajouter un parent
             </LoadingButton>
         </Stack>
@@ -306,6 +320,24 @@ export default function PatientPage() {
           View profile
         </MenuItem>
       </Popover>
+
+      
+      <Dialog
+        open={Boolean(parentModal)}
+        onClose={handleCloseModaParent}
+        maxWidth="sm"
+        fullWidth
+      >
+        <DialogTitle>
+          <Typography>Ajouter un Parent (ou Tuteur)</Typography>
+        </DialogTitle>
+        <DialogContent>
+        <Container sx={{pt: 2}} >
+          {/* <AddParent onClose={handleCloseModaParent} /> */}
+        </Container>
+        </DialogContent>
+        
+      </Dialog>
     </>
   );
 }

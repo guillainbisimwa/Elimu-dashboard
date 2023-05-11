@@ -77,10 +77,7 @@ function applySortFilter(array, comparator, query) {
 export default function EcolePage() {
   const navigate = useNavigate();
 
-  const { ecoleList, errorEcole, isLoadingEcole } = useSelector((state) => state.ecole);
-
-  console.log("=>", errorEcole, isLoadingEcole, ecoleList  );
-
+  const { ecoleList } = useSelector((state) => state.ecole);
 
   useEffect(() => {
     // Fetch Ecole and patient lists when component mounts
@@ -187,8 +184,7 @@ export default function EcolePage() {
 
           <Stack direction="row" alignItems="center" justifyContent="space-between" gap={1} mb={1}>
            
-            <LoadingButton size='large'  variant="contained"  color="error" startIcon={<IconButton size="large" color="success" >
-              <Iconify icon={'eva:more-vertical-fill'} /></IconButton>} 
+            <LoadingButton size='large'  variant="contained"  color="error"
               onClick={() => handleOpenModaEcole()} >
               Ajouter une Ecole
             </LoadingButton>
