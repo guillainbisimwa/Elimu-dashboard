@@ -44,7 +44,23 @@ const ecoleSlice = createSlice({
     isLoadingEcole: false,
     errorEcole: null,
   },
-  reducers: {},
+  reducers: {
+    addEcoleStart: (state) => {
+      state.isLoadingEcole = true;
+    },
+    addEcoleSuccess: (state, action) => {
+      state.isLoadingEcole = false;
+      state.ecoleList = action.payload;
+      state.errorEcole = null;
+
+      // Store user data to LocalStorage
+      // localStorage.setItem('ecoleList', JSON.stringify({ ecoleList: action.payload }));
+    },
+    addEcoleFailure: (state, action) => {
+      state.isLoadingEcole = false;
+      state.errorEcole = action.payload;
+    },
+  },
   // In the extraReducers field, we define how the state should change when the asynchronous
   // thunk fetchEcole is in a pending, fulfilled, or rejected state. 
   extraReducers: (builder) => {
@@ -64,5 +80,7 @@ const ecoleSlice = createSlice({
       });
   },
 });
+
+export const { addEcoleStart, addEcoleSuccess, addEcoleFailure  } = ecoleSlice.actions;
 
 export default ecoleSlice.reducer;
