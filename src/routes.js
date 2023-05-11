@@ -10,6 +10,7 @@ import DashboardAppPage from './pages/DashboardAppPage';
 
 import ParentPage from './pages/ParentPage';
 import EcolePage from './pages/EcolePage';
+import AnneeScolairePage from './pages/AnneeScolairePage';
 
 export default function Router() {
   const { user } = useSelector((state) => state.auth);
@@ -23,6 +24,7 @@ export default function Router() {
         { path: 'app', element: <DashboardAppPage /> },
         { path: 'ecole', element: <EcolePage /> },
         { path: 'parent', element: <ParentPage /> },
+        { path: 'anneeScolaire', element: <AnneeScolairePage /> },
       ],
     },
     {
