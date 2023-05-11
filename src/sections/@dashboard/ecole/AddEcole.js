@@ -1,11 +1,12 @@
 
 import { Stack, TextField, Typography} from '@mui/material';
+import PropTypes from 'prop-types';
 import { LoadingButton } from '@mui/lab';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ecoleAction } from '../../../redux/ecoleAction';
 
-const AddEcole = () => {
+const AddEcole = (props) => {
 
   const dispatch = useDispatch();
 
@@ -25,10 +26,9 @@ const AddEcole = () => {
   const handleClick = (e) => {
     e.preventDefault();
 
-    console.log(nom, phone, address, email, website, imgUrl);
-
     if(!errorNom && !errorPhone && nom.length >3){
       dispatch(ecoleAction(nom, phone, address, email, website, imgUrl));
+      props.onClose();
     } else{
       setError("Veillez valider tous les champs")
       setErrorNom(true)
@@ -79,6 +79,10 @@ const AddEcole = () => {
     </>
   );
 }
+
+AddEcole.propTypes = {
+  onClose: PropTypes.func,
+};
 
 export default AddEcole;
 

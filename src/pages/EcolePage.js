@@ -337,7 +337,7 @@ export default function EcolePage() {
         </DialogTitle>
         <DialogContent>
         <Container sx={{pt: 2}} >
-          <AddEcole errorEcole isLoadingEcole />
+          <AddEcole onClose={handleCloseModaEcole} />
         </Container>
         </DialogContent>
         
