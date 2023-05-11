@@ -77,7 +77,10 @@ function applySortFilter(array, comparator, query) {
 export default function EcolePage() {
   const navigate = useNavigate();
 
-  const { ecoleList } = useSelector((state) => state.ecole);
+  const { ecoleList, errorEcole, isLoadingEcole } = useSelector((state) => state.ecole);
+
+  console.log("=>", errorEcole, isLoadingEcole, ecoleList  );
+
 
   useEffect(() => {
     // Fetch doctor and patient lists when component mounts
@@ -334,7 +337,7 @@ export default function EcolePage() {
         </DialogTitle>
         <DialogContent>
         <Container sx={{pt: 2}} >
-          <AddEcole />
+          <AddEcole errorEcole isLoadingEcole />
         </Container>
         </DialogContent>
         

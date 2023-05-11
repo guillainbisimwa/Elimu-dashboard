@@ -50,7 +50,7 @@ const ecoleSlice = createSlice({
     },
     addEcoleSuccess: (state, action) => {
       state.isLoadingEcole = false;
-      state.ecoleList = action.payload;
+      state.ecoleList = [ ...state.ecoleList, {...action.payload }];
       state.errorEcole = null;
 
       // Store user data to LocalStorage
