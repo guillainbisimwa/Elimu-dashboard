@@ -22,7 +22,7 @@ const classeSlice = createSlice({
     classeList: [
       {
         id: "123",
-        name: "2023",
+        name: "1er A",
         anneeScolaire: "123",
         ecole:"123",
         timestamp: "2023-01-01",
