@@ -30,7 +30,7 @@ const anneeScolaireSlice = createSlice({
     errorAnneeScolaire: null,
   },
   reducers: {
-    addAnneScolaireStart: (state) => {
+    addAnneeScolaireStart: (state) => {
       state.isLoadingAnneeScolaire = true;
     },
     addAnneeScolaireSuccess: (state, action) => {
@@ -66,6 +66,6 @@ const anneeScolaireSlice = createSlice({
   },
 });
 
-export const { addAnneScolaireStart, addAnneeScolaireSuccess, addAnneeScolaireFailure  } = anneeScolaireSlice.actions;
+export const { addAnneeScolaireStart, addAnneeScolaireSuccess, addAnneeScolaireFailure  } = anneeScolaireSlice.actions;
 
 export default anneeScolaireSlice.reducer;

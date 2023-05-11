@@ -33,7 +33,7 @@ const communicationSlice = createSlice({
     errorCommunication: null,
   },
   reducers: {
-    addAnneScolaireStart: (state) => {
+    addCommunicationStart: (state) => {
       state.isLoadingCommunication = true;
     },
     addCommunicationSuccess: (state, action) => {
@@ -69,6 +69,6 @@ const communicationSlice = createSlice({
   },
 });
 
-export const { addAnneScolaireStart, addCommunicationSuccess, addCommunicationFailure  } = communicationSlice.actions;
+export const { addCommunicationStart, addCommunicationSuccess, addCommunicationFailure  } = communicationSlice.actions;
 
 export default communicationSlice.reducer;

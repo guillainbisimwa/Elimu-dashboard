@@ -17,18 +17,28 @@ const navConfig = [
     icon: icon('ic_analytics'),
   },
   {
+    title: 'Annee Scolaire',
+    path: '/dashboard/anneeScolaire',
+    icon: icon('ic_analytics'),
+  },
+  {
+    title: 'Classe',
+    path: '/dashboard/classe',
+    icon: icon('ic_analytics'),
+  },
+  {
     title: 'parent',
     path: '/dashboard/parent',
     icon: icon('ic_analytics'),
   },
 
   {
-    title: 'eleves',
+    title: 'eleve',
     path: '/dashboard/eleves',
     icon: icon('ic_analytics'),
   },
   {
-    title: 'payment',
+    title: 'Finance',
     path: '/dashboard/payment',
     icon: icon('ic_analytics'),
   },

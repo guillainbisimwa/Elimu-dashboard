@@ -32,7 +32,7 @@ const classeSlice = createSlice({
     errorClasse: null,
   },
   reducers: {
-    addAnneScolaireStart: (state) => {
+    addClasseStart: (state) => {
       state.isLoadingClasse = true;
     },
     addClasseSuccess: (state, action) => {
@@ -68,6 +68,6 @@ const classeSlice = createSlice({
   },
 });
 
-export const { addAnneScolaireStart, addClasseSuccess, addClasseFailure  } = classeSlice.actions;
+export const { addClasseStart, addClasseSuccess, addClasseFailure  } = classeSlice.actions;
 
 export default classeSlice.reducer;

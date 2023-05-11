@@ -35,7 +35,7 @@ const eleveSlice = createSlice({
     errorEleve: null,
   },
   reducers: {
-    addAnneScolaireStart: (state) => {
+    addEleveStart: (state) => {
       state.isLoadingEleve = true;
     },
     addEleveSuccess: (state, action) => {
@@ -71,6 +71,6 @@ const eleveSlice = createSlice({
   },
 });
 
-export const { addAnneScolaireStart, addEleveSuccess, addEleveFailure  } = eleveSlice.actions;
+export const { addEleveStart, addEleveSuccess, addEleveFailure  } = eleveSlice.actions;
 
 export default eleveSlice.reducer;

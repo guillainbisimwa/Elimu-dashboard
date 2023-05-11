@@ -33,7 +33,7 @@ const paymentSlice = createSlice({
     errorPayment: null,
   },
   reducers: {
-    addAnneScolaireStart: (state) => {
+    addPaymentStart: (state) => {
       state.isLoadingPayment = true;
     },
     addPaymentSuccess: (state, action) => {
@@ -69,6 +69,6 @@ const paymentSlice = createSlice({
   },
 });
 
-export const { addAnneScolaireStart, addPaymentSuccess, addPaymentFailure  } = paymentSlice.actions;
+export const { addPaymentStart, addPaymentSuccess, addPaymentFailure  } = paymentSlice.actions;
 
 export default paymentSlice.reducer;
