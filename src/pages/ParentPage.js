@@ -32,7 +32,7 @@ import { LoadingButton } from '@mui/lab';
 import Iconify from '../components/iconify';
 import Scrollbar from '../components/scrollbar';
 // sections
-import { ParentListHead, ParentListToolbar } from '../sections/@dashboard/parent';
+import { AddParent, ParentListHead, ParentListToolbar } from '../sections/@dashboard/parent';
 import { store } from '../redux/Store';
 import { fetchParents } from '../redux/parentsReducer';
 
@@ -333,7 +333,7 @@ export default function PatientPage() {
         </DialogTitle>
         <DialogContent>
         <Container sx={{pt: 2}} >
-          {/* <AddParent onClose={handleCloseModaParent} /> */}
+          <AddParent onClose={handleCloseModaParent} /> 
         </Container>
         </DialogContent>
         

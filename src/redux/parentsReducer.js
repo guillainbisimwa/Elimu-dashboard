@@ -73,6 +73,6 @@ const parentsSlice = createSlice({
   },
 });
 
-export const { addParentSuccess, addParentFailure, addParentStart  } = ecoleSlice.actions;
+export const { addParentSuccess, addParentFailure, addParentStart  } = parentsSlice.actions;
 
 export default parentsSlice.reducer;
