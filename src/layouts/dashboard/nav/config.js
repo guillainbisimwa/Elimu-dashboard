@@ -34,7 +34,7 @@ const navConfig = [
 
   {
     title: 'eleve',
-    path: '/dashboard/eleves',
+    path: '/dashboard/eleve',
     icon: icon('ic_analytics'),
   },
   {

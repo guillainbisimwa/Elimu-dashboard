@@ -77,7 +77,7 @@ function applySortFilter(array, comparator, query) {
 export default function ElevePage() {
   const navigate = useNavigate();
 
-  const { eleveList } = useSelector((state) => state.eleve);
+  const { eleveList } = useSelector((state) => state.eleves);
 
   useEffect(() => {
     // Fetch Eleve and patient lists when component mounts
