@@ -85,7 +85,7 @@ export default function EcolePage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [store.dispatch]);
 
-  const [anneeScolaireModal, setAnneeScolaireModal] = useState(null);
+  const [ecoleModal, setEcoleModal] = useState(null);
 
   const [open, setOpen] = useState(null);
 
@@ -112,12 +112,12 @@ export default function EcolePage() {
     setOpen(null);
   };
 
-  const handleOpenModaAS= () => {
-    setAnneeScolaireModal(true);
+  const handleOpenModaEcole= () => {
+    setEcoleModal(true);
   };
 
-  const handleCloseModalAS = () => {
-    setAnneeScolaireModal(null);
+  const handleCloseModaEcole = () => {
+    setEcoleModal(null);
   };
 
   const handleRequestSort = (event, property) => {
@@ -184,17 +184,10 @@ export default function EcolePage() {
 
           <Stack direction="row" alignItems="center" justifyContent="space-between" gap={1} mb={1}>
            
-
-            <LoadingButton size='large'  variant="contained" color='error' startIcon={<IconButton size="large" color="success" >
-                <Iconify icon={'eva:more-vertical-fill'} /></IconButton>}
-                >
-              Classes
-            </LoadingButton>
-
-            <LoadingButton size='large'  variant="contained" startIcon={<IconButton size="large" color="success" >
+            <LoadingButton size='large'  variant="contained"  color="error" startIcon={<IconButton size="large" color="success" >
               <Iconify icon={'eva:more-vertical-fill'} /></IconButton>} 
-              onClick={() => handleOpenModaAS()} >
-              Annee scolaire
+              onClick={() => handleOpenModaEcole()} >
+              Ajouter une Ecole
             </LoadingButton>
           </Stack>
           
@@ -331,8 +324,8 @@ export default function EcolePage() {
       </Popover>
 
       <Dialog
-        open={Boolean(anneeScolaireModal)}
-        onClose={handleCloseModalAS}
+        open={Boolean(ecoleModal)}
+        onClose={handleCloseModaEcole}
         maxWidth="sm"
         fullWidth
       >
