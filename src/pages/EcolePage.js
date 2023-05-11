@@ -83,7 +83,7 @@ export default function EcolePage() {
 
 
   useEffect(() => {
-    // Fetch doctor and patient lists when component mounts
+    // Fetch Ecole and patient lists when component mounts
     store.dispatch(fetchEcole());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [store.dispatch]);
@@ -104,11 +104,11 @@ export default function EcolePage() {
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const [currentDoctor, setCurrentDoctor ] = useState(null)
+  const [currentEcole, setCurrentEcole ] = useState(null)
 
-  const handleOpenMenu = (event, doctorObject) => {
+  const handleOpenMenu = (event, ecoleObject) => {
     setOpen(event.currentTarget);
-    setCurrentDoctor(JSON.stringify(doctorObject))
+    setCurrentEcole(JSON.stringify(ecoleObject))
   };
 
   const handleCloseMenu = () => {
@@ -317,8 +317,8 @@ export default function EcolePage() {
         }}
       >
         <MenuItem  onClick={()=> {
-          console.log(currentDoctor);
-          const params = { doctorObject: currentDoctor };
+          console.log(currentEcole);
+          const params = { ecoleObject: currentEcole };
           navigate('/dashboard/ecole-details',  { state: params });
         }}>
           <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }} />
