@@ -11,7 +11,6 @@ const AddEcole = () => {
 
   const { errorEcole } = useSelector((state) => state.ecole);
 
-
   const [nom, setNom] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
@@ -20,20 +19,41 @@ const AddEcole = () => {
   const [imgUrl, setImgUrl] = useState('');
 
   const [error, setError] = useState('');
+  const [errorNom, setErrorNom] = useState(false);
+  const [errorPhone, setErrorPhone] = useState(false);
   
   const handleClick = (e) => {
     e.preventDefault();
 
     console.log(nom, phone, address, email, website, imgUrl);
 
-    if(( (nom.length > 0) && (nom.length < 4)) || (phone.length > 0) && (phone.length < 8)){
-      setError("Veillez valider tous les champs")
+    if(!errorNom && !errorPhone && nom.length >3){
+      dispatch(ecoleAction(nom, phone, address, email, website, imgUrl));
     } else{
-      // dispatch(ecoleAction(nom, phone, address, email, website, imgUrl));
-      setError("Veillez valider tous les champs2")
-
+      setError("Veillez valider tous les champs")
+      setErrorNom(true)
+      setErrorPhone(true)
     }
-    
+  };
+
+  const handleCheckNom = (e) => {
+    e.preventDefault();
+    setNom(e.target.value);
+    if(nom.length < 4){
+      setErrorNom(true)
+    }else {
+      setErrorNom(false)
+    }
+  };
+  
+  const handleCheckPhone = (e) => {
+    e.preventDefault();
+    setPhone(e.target.value);
+    if(phone.length < 9){
+      setErrorPhone(true)
+    }else {
+      setErrorPhone(false)
+    }
   };
 
   return (
@@ -43,10 +63,10 @@ const AddEcole = () => {
       {error && <Typography variant="body" sx={{ textAlign: 'center', color: 'red', mb: 3 }}>{error}</Typography>}
         {/* {isLoadingEcole && <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}><CircularProgress /></Box>} */}
 
-        <TextField name="nom" label="Nom de l'Ecole" value={nom} onChange={(e) => setNom(e.target.value)} 
-        error={(nom.length > 0) && (nom.length < 4) } />
-        <TextField name="phone" type='tel' label="Telephone" value={phone}  onChange={(e) => setPhone(e.target.value)} 
-         error={(phone.length > 0) && (phone.length < 8) } />
+        <TextField name="nom" label="Nom de l'Ecole" value={nom} onChange={(e) =>{ handleCheckNom(e)}} 
+        error={errorNom} />
+        <TextField name="phone" type='tel' label="Telephone" value={phone}   onChange={(e) =>{ handleCheckPhone(e)}}
+         error={errorPhone} />
         <TextField name="address" label="Addresse" value={address}  onChange={(e) => setAddress(e.target.value)} />
         <TextField name="email" label="Email" value={email}  onChange={(e) => setEmail(e.target.value)} />
         <TextField name="website" label="Site web" value={website}  onChange={(e) => setWebsite(e.target.value)} />

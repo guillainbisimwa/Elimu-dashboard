@@ -1,4 +1,4 @@
-import axios from 'axios';
+//  import axios from 'axios';
 import { addEcoleFailure, addEcoleStart, addEcoleSuccess } from './ecoleReducer';
 
 
@@ -16,7 +16,7 @@ export const ecoleAction = (nom, phone, address, email, website, imgUrl) => asyn
     // Dispatch loginSuccess action with response data
     // dispatch(addEcoleSuccess(response.data)); // TODO : USE NETWORK
 
-    dispatch(addEcoleSuccess({nom, phone, address, email, website, imgUrl})) // TODO : Just for test!
+    dispatch(addEcoleSuccess({name: nom, phones: [...phone], address, email, website, imgUrl, id:"12355", timestamp: "2023-01-01"})) // TODO : Just for test!
 
   } catch (error) {
     console.log(error);
