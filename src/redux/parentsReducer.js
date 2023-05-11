@@ -37,7 +37,24 @@ const parentsSlice = createSlice({
     isLoadingParent: false,
     errorParent: null,
   },
-  reducers: {},
+  reducers: {
+    addParentStart: (state) => {
+      state.isLoadingParent = true;
+    },
+    addParentSuccess: (state, action) => {
+      state.isLoadingParent = false;
+      state.parentList = [ ...state.parentList, {...action.payload }];
+      state.errorParent = null;
+
+      // Store user data to LocalStorage
+      // localStorage.setItem('parentList', JSON.stringify({ parentList: action.payload }));
+    },
+    addParentFailure: (state, action) => {
+      state.isLoadingParent = false;
+      state.errorParent = action.payload;
+    },
+  },
+
   extraReducers: (builder) => {
     builder
       .addCase(fetchParents.pending, (state) => {
