@@ -22,7 +22,7 @@ const eleveSlice = createSlice({
     eleveList: [
       {
         id: "123",
-        name :"Shabani",
+        name :"Shabani Nonda",
         phones : ['+2497855552'],
         address :"Q. Mabanga Sud",
         imgUrl : null,
