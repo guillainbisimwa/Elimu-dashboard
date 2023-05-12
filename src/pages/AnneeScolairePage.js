@@ -38,10 +38,6 @@ import { store } from '../redux/Store';
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
-  { id: 'email', label: 'Email', alignRight: false },
-  { id: 'phones', label: 'Phones', alignRight: false },
-  { id: 'address', label: 'Address', alignRight: false },
-  { id: 'website', label: 'Website', alignRight: false },
   { id: '' },
 ];
 
@@ -209,7 +205,7 @@ export default function AnneeScolairePage() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, email, phones, address, website } = row;
+                    const { id, name } = row;
                     const selectedUser = selected.indexOf(name) !== -1;
 
                     return (
@@ -230,13 +226,6 @@ export default function AnneeScolairePage() {
                           </Stack>
                         </TableCell>
 
-                         <TableCell align="left">{email}</TableCell>
-
-                         <TableCell align="left">{phones}</TableCell>
-
-                         <TableCell align="left">{address}</TableCell>
-
-                         <TableCell align="left">{website}</TableCell>
                         
                         <TableCell align="right">
                           <IconButton size="large" color="inherit" onClick={(e)=>{
