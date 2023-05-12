@@ -77,7 +77,7 @@ function applySortFilter(array, comparator, query) {
 export default function PaymentPage() {
   const navigate = useNavigate();
 
-  const { paymentList } = useSelector((state) => state.payment);
+  const { paymentList } = useSelector((state) => state.payments);
 
   useEffect(() => {
     // Fetch Payment and patient lists when component mounts
@@ -209,23 +209,23 @@ export default function PaymentPage() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, email, phones, address, website } = row;
-                    const selectedUser = selected.indexOf(name) !== -1;
+                    const { id, name, email, phones, address, website, montant } = row;
+                    const selectedUser = selected.indexOf(montant) !== -1;
 
                     return (
                       <TableRow hover key={id} tabIndex={-1} role="checkbox" selected={selectedUser}>
                         <TableCell padding="checkbox">
-                          <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, name)} />
+                          <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, montant)} />
                         </TableCell>
 
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
-                            <Avatar alt={name} >
-                              {name.charAt(0)}
+                            <Avatar alt={montant} >
+                              {montant.charAt(0)}
                             </Avatar>
                             
                             <Typography variant="subtitle2" noWrap>
-                              {name}
+                              {montant}
                             </Typography>
                           </Stack>
                         </TableCell>

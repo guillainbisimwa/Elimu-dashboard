@@ -13,6 +13,7 @@ import EcolePage from './pages/EcolePage';
 import AnneeScolairePage from './pages/AnneeScolairePage';
 import ClassePage from './pages/ClassePage';
 import ElevePage from './pages/ElevePage';
+import PaymentPage from './pages/PaymentPage';
 
 export default function Router() {
   const { user } = useSelector((state) => state.auth);
@@ -29,6 +30,7 @@ export default function Router() {
         { path: 'anneeScolaire', element: <AnneeScolairePage /> },
         { path: 'classe', element: <ClassePage /> },
         { path: 'eleve', element: <ElevePage /> },
+        { path: 'payment', element: <PaymentPage /> },
       ],
     },
     {
