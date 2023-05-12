@@ -20,10 +20,6 @@ const AddAnneeScolaire = (props) => {
   const handleClick = (e) => {
     e.preventDefault();
 
-    console.log("nom", nom);
-    console.log("nomL", nom.length);
-    console.log("errorNom", errorNom);
-
     if(!errorNom && nom.length >2){
       dispatch(AnneeScolaireAction(nom));
       props.onClose();
@@ -56,8 +52,6 @@ const AddAnneeScolaire = (props) => {
       {errorAnneeScolaire && <Typography variant="body" sx={{ textAlign: 'center', color: 'red', mb: 3 }}>{errorAnneeScolaire}</Typography>}
       {error && <Typography variant="body" sx={{ textAlign: 'center', color: 'red', mb: 3 }}>{error}</Typography>}
 
-        {/* <TextField name="nom" label="Annee Scolaire" value={nom} onChange={(e) =>{ handleCheckNom(e)}} error={errorNom} /> */}
-
         <Autocomplete
           disablePortal
           id="combo-box-demo"
@@ -79,23 +73,6 @@ const AddAnneeScolaire = (props) => {
             />
           )}
         />
-
-{/* <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          options={years}
-          isOptionEqualToValue={(option, value) => option === value}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              name="nom"
-              onChange={handleCheckNom}
-              error={errorNom}
-              value={nom}
-              label="Annee Scolaire"
-            />
-          )}
-        /> */}
 
       </Stack>
 
