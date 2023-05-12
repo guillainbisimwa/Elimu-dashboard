@@ -14,39 +14,39 @@ const navConfig = [
   {
     title: 'ecole',
     path: '/dashboard/ecole',
-    icon: icon('ic_analytics'),
+    icon: icon('school'),
   },
   {
     title: 'Annee Scolaire',
     path: '/dashboard/anneeScolaire',
-    icon: icon('ic_analytics'),
+    icon: icon('calendar-year'),
   },
   {
     title: 'Classe',
     path: '/dashboard/classe',
-    icon: icon('ic_analytics'),
+    icon: icon('i-training-class-outline'),
   },
   {
     title: 'parent',
     path: '/dashboard/parent',
-    icon: icon('ic_analytics'),
+    icon: icon('parent-line'),
   },
 
   {
     title: 'eleve',
     path: '/dashboard/eleve',
-    icon: icon('ic_analytics'),
+    icon: icon('student'),
   },
   {
     title: 'Finance',
     path: '/dashboard/payment',
-    icon: icon('ic_analytics'),
+    icon: icon('attach-money-rounded'),
   },
 
   {
     title: 'communication',
     path: '/dashboard/communication',
-    icon: icon('ic_analytics'),
+    icon: icon('communication'),
   },
   
 ];
