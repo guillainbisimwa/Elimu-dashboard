@@ -20,26 +20,7 @@ export const fetchCommunication = createAsyncThunk(
 const communicationSlice = createSlice({
   name: "communication",
   initialState: {
-    communicationList: 
-      // [...Array(50)].map((_, index) => ({
-      //   id: faker.datatype.uuid(),
-      //   motif: faker.lorem.lines(3),
-      //   anneeScolaire: "123",
-      //   // phone: faker.phone.phoneNumber('+243 9# ### ## ##'),
-      //   eleve: faker.name.full(),
-      //   parent: faker.name.lastName(),
-      //   timestamp: faker.date.between()
-      // })
-      // ) 
-      [{
-        id: "123",
-        motif: faker.lorem.lines(3),
-        anneeScolaire: "123",
-        eleve: "123",
-        parent: "123",
-        timestamp: "2023-01-01",
-      }]
-    ,
+    communicationList: [],
     isLoadingCommunication: false,
     errorCommunication: null,
   },

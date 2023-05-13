@@ -2,7 +2,7 @@
 import { addCommunicationFailure, addCommunicationStart, addCommunicationSuccess } from './communicationReducer';
 
 
-export const CommunicationAction = (motif, anneeScolaire, eleve, parent) => async (dispatch) => {
+export const CommunicationAction = (motif, anneeScolaire, eleve, parent, id, timestamp) => async (dispatch) => {
   try {
     dispatch(addCommunicationStart());
 
@@ -16,7 +16,7 @@ export const CommunicationAction = (motif, anneeScolaire, eleve, parent) => asyn
     // Dispatch loginSuccess action with response data
     // dispatch(addCommunicationSuccess(response.data)); // TODO : USE NETWORK
 
-    dispatch(addCommunicationSuccess({motif, anneeScolaire, eleve, parent, id:"12355", timestamp: "2023-01-01"})) // TODO : Just for test!
+    dispatch(addCommunicationSuccess({motif, anneeScolaire, eleve, parent,  id: id=== undefined ? "1235" : id, timestamp: timestamp=== undefined ? "2023-01-01" : timestamp})) // TODO : Just for test!
 
   } catch (error) {
     console.log(error);

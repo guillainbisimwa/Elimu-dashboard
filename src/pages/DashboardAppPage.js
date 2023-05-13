@@ -21,6 +21,7 @@ import { AnneeScolaireAction } from '../redux/anneeScolaireAction';
 import { ClasseAction } from '../redux/classeAction';
 import { parentAction } from '../redux/parentAction';
 import { EleveAction } from '../redux/eleveAction';
+import { CommunicationAction } from '../redux/communicationAction';
 
 function countItems(ar) {
   return ar.length
@@ -92,7 +93,15 @@ export default function DashboardAppPage() {
       timestamp: faker.date.between(),
     }));
 
-   
+    const communicationData = [...Array(5)].map((_, index) => ({
+      id: faker.datatype.uuid(),
+      motif: faker.lorem.lines(1),
+      anneeScolaire: sample(anneeScolaireData),
+      eleve:  sample(eleveData),
+      parent: sample(parentData),
+      timestamp: faker.date.between(),
+    }));
+
     ecoleData.forEach( el => {
       const nom = el.name;
       const phone = el.phones[0]; 
@@ -119,6 +128,10 @@ export default function DashboardAppPage() {
       const nom = el.name;
       const phone = el.phones[0]; 
       dispatch(EleveAction(nom, phone, el.address,el.imgUrl, el.parent, el.classe,  el.id, el.timestamp));
+    });
+
+    communicationData.forEach( el => {
+      dispatch(CommunicationAction(el.motif, el.anneeScolaire, el.eleve, el.parent,  el.id, el.timestamp));
     });
    
   }

@@ -37,13 +37,14 @@ import { fetchCommunication } from '../redux/communicationReducer';
 import { store } from '../redux/Store';
 
 const TABLE_HEAD = [
-  { id: 'name', label: 'Name', alignRight: false },
-  { id: 'email', label: 'Email', alignRight: false },
-  { id: 'phones', label: 'Phones', alignRight: false },
-  { id: 'address', label: 'Address', alignRight: false },
-  { id: 'website', label: 'Website', alignRight: false },
+  { id: 'motif', label: 'Motif', alignRight: false },
+  { id: 'eleve', label: 'Eleve', alignRight: false },
+  { id: 'parent', label: 'Parent', alignRight: false },
+  { id: 'classe', label: 'Classe', alignRight: false },
+  { id: 'anneeScolaire', label: 'Annee Scolaire', alignRight: false },
   { id: '' },
 ];
+
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -78,6 +79,8 @@ export default function CommunicationPage() {
   const navigate = useNavigate();
 
   const { communicationList } = useSelector((state) => state.communications);
+
+  console.log(communicationList);
 
   useEffect(() => {
     // Fetch Communication and patient lists when component mounts
@@ -209,34 +212,34 @@ export default function CommunicationPage() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, email, phones, address, website } = row;
-                    const selectedUser = selected.indexOf(name) !== -1;
+                    const { id, motif, eleve, parent, anneeScolaire } = row;
+                    const selectedUser = selected.indexOf(motif) !== -1;
 
                     return (
                       <TableRow hover key={id} tabIndex={-1} role="checkbox" selected={selectedUser}>
                         <TableCell padding="checkbox">
-                          <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, name)} />
+                          <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, motif)} />
                         </TableCell>
 
-                        <TableCell component="th" scope="row" padding="none">
+                        <TableCell component="th" scope="row" padding="none"  >
                           <Stack direction="row" alignItems="center" spacing={2}>
-                            <Avatar alt={name} >
+                            <Avatar alt={motif} >
                               {/* {name.charAt(0)} */}
                             </Avatar>
                             
-                            <Typography variant="subtitle2" noWrap>
-                              {name}
+                            <Typography variant="subtitle2">
+                              {motif}
                             </Typography>
                           </Stack>
                         </TableCell>
 
-                         <TableCell align="left">{email}</TableCell>
+                         <TableCell align="left">{eleve.name}</TableCell>
 
-                         <TableCell align="left">{phones}</TableCell>
+                         <TableCell align="left">{parent.name}</TableCell>
 
-                         <TableCell align="left">{address}</TableCell>
+                         <TableCell align="left">{eleve.classe.name}</TableCell>
 
-                         <TableCell align="left">{website}</TableCell>
+                         <TableCell align="left">{anneeScolaire.name}</TableCell>
                         
                         <TableCell align="right">
                           <IconButton size="large" color="inherit" onClick={(e)=>{
