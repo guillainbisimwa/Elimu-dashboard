@@ -54,7 +54,7 @@ export default function CommunicationListToolbar({ numSelected, filterName, onFi
         <StyledSearch
           value={filterName}
           onChange={onFilterName}
-          placeholder="Search Ecole..."
+          placeholder="Search Communication..."
           startAdornment={
             <InputAdornment position="start">
               <Iconify icon="eva:search-fill" sx={{ color: 'text.disabled', width: 20, height: 20 }} />

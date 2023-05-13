@@ -222,15 +222,7 @@ export default function CommunicationPage() {
                         </TableCell>
 
                         <TableCell component="th" scope="row" padding="none"  >
-                          <Stack direction="row" alignItems="center" spacing={2}>
-                            <Avatar alt={motif} >
-                              {/* {name.charAt(0)} */}
-                            </Avatar>
-                            
-                            <Typography variant="subtitle2">
-                              {motif}
-                            </Typography>
-                          </Stack>
+                          {motif}
                         </TableCell>
 
                          <TableCell align="left">{eleve.name}</TableCell>
@@ -331,9 +323,7 @@ export default function CommunicationPage() {
         maxWidth="sm"
         fullWidth
       >
-        <DialogTitle>
-          <Typography>Ajouter une Communication</Typography>
-        </DialogTitle>
+        <DialogTitle>Ajouter une Communication</DialogTitle>
         <DialogContent>
         <Container sx={{pt: 2}} >
           <AddCommunication onClose={handleCloseModaCommunication} />

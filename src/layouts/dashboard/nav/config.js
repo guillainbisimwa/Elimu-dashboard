@@ -37,12 +37,11 @@ const navConfig = [
     path: '/dashboard/eleve',
     icon: icon('student'),
   },
-  {
-    title: 'Finance',
-    path: '/dashboard/payment',
-    icon: icon('attach-money-rounded'),
-  },
-
+  // {
+  //   title: 'Finance',
+  //   path: '/dashboard/payment',
+  //   icon: icon('attach-money-rounded'),
+  // },
   {
     title: 'communication',
     path: '/dashboard/communication',
