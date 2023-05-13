@@ -38,10 +38,10 @@ import { store } from '../redux/Store';
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
-  { id: 'email', label: 'Email', alignRight: false },
   { id: 'phones', label: 'Phones', alignRight: false },
   { id: 'address', label: 'Address', alignRight: false },
-  { id: 'website', label: 'Website', alignRight: false },
+  { id: 'parent', label: 'Parent', alignRight: false },
+  { id: 'classe', label: 'Classe', alignRight: false },
   { id: '' },
 ];
 
@@ -78,6 +78,7 @@ export default function ElevePage() {
   const navigate = useNavigate();
 
   const { eleveList } = useSelector((state) => state.eleves);
+  console.log(eleveList);
 
   useEffect(() => {
     // Fetch Eleve and patient lists when component mounts
@@ -209,7 +210,7 @@ export default function ElevePage() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, email, phones, address, website } = row;
+                    const { id, name, parent, phones, address, classe } = row;
                     const selectedUser = selected.indexOf(name) !== -1;
 
                     return (
@@ -230,13 +231,14 @@ export default function ElevePage() {
                           </Stack>
                         </TableCell>
 
-                         <TableCell align="left">{email}</TableCell>
 
                          <TableCell align="left">{phones}</TableCell>
 
                          <TableCell align="left">{address}</TableCell>
 
-                         <TableCell align="left">{website}</TableCell>
+                         <TableCell align="left">{parent.name}</TableCell>
+
+                         <TableCell align="left">{classe.name}</TableCell>
                         
                         <TableCell align="right">
                           <IconButton size="large" color="inherit" onClick={(e)=>{

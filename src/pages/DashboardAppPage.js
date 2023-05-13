@@ -20,6 +20,7 @@ import { ecoleAction } from '../redux/ecoleAction';
 import { AnneeScolaireAction } from '../redux/anneeScolaireAction';
 import { ClasseAction } from '../redux/classeAction';
 import { parentAction } from '../redux/parentAction';
+import { EleveAction } from '../redux/eleveAction';
 
 function countItems(ar) {
   return ar.length
@@ -55,6 +56,16 @@ export default function DashboardAppPage() {
       website: faker.internet.domainName(),
       timestamp: faker.date.between(),
     }));
+
+    const parentData = [...Array(4)].map((_, index) => ({
+      id: faker.datatype.uuid(),
+      name: `${faker.name.firstName()} ${faker.name.lastName()}`, 
+      pseudo: faker.name.middleName(), 
+      phones: [faker.phone.number('+243 9# ### ## ##')],
+      address: faker.address.streetAddress(),
+      imgUrl: faker.image.avatar(),
+      timestamp: faker.date.between(),
+    }));
     
     const anneeScolaireData = [...Array(1)].map((_, index) => ({
       id: faker.datatype.uuid(),
@@ -70,16 +81,18 @@ export default function DashboardAppPage() {
       timestamp: faker.date.between(),
     }));
 
-    const parentData = [...Array(4)].map((_, index) => ({
+    const eleveData = [...Array(12)].map((_, index) => ({
       id: faker.datatype.uuid(),
-      name: `${faker.name.firstName()} ${faker.name.lastName()}`, 
-      pseudo: faker.name.middleName(), 
+      name: `${faker.name.firstName()} ${faker.name.lastName()}`,
       phones: [faker.phone.number('+243 9# ### ## ##')],
       address: faker.address.streetAddress(),
       imgUrl: faker.image.avatar(),
+      parent: sample(parentData),
+      classe: sample(ClasseData),
       timestamp: faker.date.between(),
     }));
 
+   
     ecoleData.forEach( el => {
       const nom = el.name;
       const phone = el.phones[0]; 
@@ -102,6 +115,11 @@ export default function DashboardAppPage() {
       dispatch(parentAction(nom, phone, el.address, el.pseudo, el.imgUrl, el.id, el.timestamp));
     });
 
+    eleveData.forEach( el => {
+      const nom = el.name;
+      const phone = el.phones[0]; 
+      dispatch(EleveAction(nom, phone, el.address,el.imgUrl, el.parent, el.classe,  el.id, el.timestamp));
+    });
    
   }
 

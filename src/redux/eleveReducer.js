@@ -19,18 +19,7 @@ export const fetchEleve = createAsyncThunk(
 const eleveSlice = createSlice({
   name: "eleve",
   initialState: {
-    eleveList: [
-      {
-        id: "123",
-        name :"Shabani Nonda",
-        phones : ['+2497855552'],
-        address :"Q. Mabanga Sud",
-        imgUrl : null,
-        parent: "123",
-        classe: "123",
-        timestamp: "2023-01-01",
-      }
-    ],
+    eleveList: [],
     isLoadingEleve: false,
     errorEleve: null,
   },
