@@ -322,9 +322,8 @@ export default function ClassePage() {
         maxWidth="sm"
         fullWidth
       >
-        <DialogTitle>
-          <Typography>Ajouter une Classe</Typography>
-        </DialogTitle>
+        
+        <DialogTitle>Ajouter une Classe</DialogTitle>
         <DialogContent>
         <Container sx={{pt: 2}} >
           <AddClasse onClose={handleCloseModaClasse} />

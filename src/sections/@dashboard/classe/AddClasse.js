@@ -1,10 +1,15 @@
 
-import { Autocomplete, Stack, TextField, Typography} from '@mui/material';
+import { Autocomplete, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack, TextField, Typography, createFilterOptions} from '@mui/material';
+
 import PropTypes from 'prop-types';
 import { LoadingButton } from '@mui/lab';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import { classeAction } from '../../../redux/classeAction';
+import { AnneeScolaireAction } from '../../../redux/anneeScolaireAction';
+
+const filter = createFilterOptions();
+
 
 const AddClasse = (props) => {
 
@@ -21,8 +26,37 @@ const AddClasse = (props) => {
   const [error, setError] = useState('');
   const [errorNom, setErrorNom] = useState(false);
 
+  // Inner Dialog
+  const [innerError, setInnerError] = useState('');
+  const [innerErrorNom, setInnerErrorNom] = useState(false);
+
   const [ecoleValue, setEcoleValue] = useState();
   const [inputEcoleValue, setInputEcoleValue] = useState('');
+
+  const [value, setValue] = useState(null);
+  const [open, toggleOpen] = useState(false);
+
+  const handleClose = () => {
+    setDialogValue({
+      name: '',
+      year: '',
+    });
+    toggleOpen(false);
+  };
+
+  const [dialogValue, setDialogValue] = useState({
+    name: '',
+    year: '',
+  });
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setValue({
+      name: dialogValue.name,
+      year: parseInt(dialogValue.year, 10),
+    });
+    handleClose();
+  };
 
   
   const handleClick = (e) => {
@@ -49,6 +83,18 @@ const AddClasse = (props) => {
       setErrorNom(false)
     }
   };
+
+  const handleClickAddAS = (e) => {
+    e.preventDefault();
+
+    if(!errorNom && nom.length >2){
+      dispatch(AnneeScolaireAction(nom));
+      // props.onClose();
+    } else{
+      setInnerError("Veillez valider tous les champs")
+      setInnerErrorNom(true)
+    }
+  };
   
 
   return (
@@ -61,11 +107,13 @@ const AddClasse = (props) => {
         error={errorNom} />
         
         <Autocomplete
-          disablePortal
           id="combo-box-demo"
           options={[...ecoleList]}
           getOptionLabel={(option) => option.name}
-
+          selectOnFocus
+          clearOnBlur
+          handleHomeEndKeys
+          freeSolo
           isOptionEqualToValue={(option, value) => option.name === value} // Customize the equality test
           value={ecoleValue}
           onChange={(event, newValue) => {
@@ -83,6 +131,89 @@ const AddClasse = (props) => {
             />
           )}
         />
+
+      <Autocomplete
+        value={value}
+        onChange={(event, newValue) => {
+          if (typeof newValue === 'string') {
+            // timeout to avoid instant validation of the dialog's form.
+            setTimeout(() => {
+              toggleOpen(true);
+              setDialogValue({
+                name: newValue,
+                year: '',
+              });
+            });
+          } else if (newValue && newValue.inputValue) {
+            toggleOpen(true);
+            setDialogValue({
+              name: newValue.inputValue,
+              year: '',
+            });
+          } else {
+            setValue(newValue);
+          }
+        }}
+        filterOptions={(options, params) => {
+          const filtered = filter(options, params);
+
+          if (params.inputValue !== '') {
+            filtered.push({
+              inputValue: params.inputValue,
+              name: `Cliquer ici pour Creer  "${params.inputValue}"`,
+            });
+          }
+
+          return filtered;
+        }}
+        id="free-solo-dialog"
+        options={anneeScolaireList}
+        getOptionLabel={(option) => {
+          // e.g value selected with enter, right from the input
+          if (typeof option === 'string') {
+            return option;
+          }
+          if (option.inputValue) {
+            return option.inputValue;
+          }
+          return option.name;
+        }}
+        selectOnFocus
+        clearOnBlur
+        handleHomeEndKeys
+        renderOption={(props, option) => <li {...props}>{option.name}</li>}
+        freeSolo
+        renderInput={(params) => <TextField {...params} label="Annee Scolaire" />}
+      />
+
+    <Dialog open={open} onClose={handleClose}>
+        <form onSubmit={handleSubmit}>
+          <DialogTitle>Ajouter une annee Scolaire</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+             Voulez-vous creer une annee scolaire? Please, add it!
+            </DialogContentText>
+            
+        <TextField name="nom" label="Nom de la classe"
+        error={errorNom} sx={{width: '100%', mt:3}}
+        value={dialogValue.name}
+              onChange={(event) =>
+                setDialogValue({
+                  ...dialogValue,
+                  name: event.target.value,
+                })
+              }
+        />
+            
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Annuler</Button>
+            <Button type="submit">Ajouter</Button>
+          </DialogActions>
+        </form>
+      </Dialog>
+
+
       </Stack>
 
       <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={handleClick} >

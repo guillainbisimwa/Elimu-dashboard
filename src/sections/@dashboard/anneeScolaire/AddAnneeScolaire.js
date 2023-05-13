@@ -53,7 +53,6 @@ const AddAnneeScolaire = (props) => {
       {error && <Typography variant="body" sx={{ textAlign: 'center', color: 'red', mb: 3 }}>{error}</Typography>}
 
         <Autocomplete
-          disablePortal
           id="combo-box-demo"
           options={years}
           isOptionEqualToValue={(option, value) => option === value} // Customize the equality test
