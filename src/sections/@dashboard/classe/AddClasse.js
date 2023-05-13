@@ -39,23 +39,40 @@ const AddClasse = (props) => {
   const handleClose = () => {
     setDialogValue({
       name: '',
-      year: '',
     });
     toggleOpen(false);
   };
 
   const [dialogValue, setDialogValue] = useState({
     name: '',
-    year: '',
   });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setValue({
-      name: dialogValue.name,
-      year: parseInt(dialogValue.year, 10),
-    });
-    handleClose();
+    setInnerErrorNom( !dialogValue.name?.length < 3)
+
+    console.log('dialogValue.name', dialogValue.name?.length);
+    console.log(innerError);
+    console.log(innerErrorNom);
+    // console.log("dialogValue.name?.length < 4", dialogValue.name?.length < 4);
+    // if(dialogValue.name?.length < 4){
+    //   setInnerErrorNom(true)
+    // }else {
+    //   setInnerErrorNom(false)
+    // }
+   
+
+    if(!innerErrorNom){
+      dispatch(AnneeScolaireAction(dialogValue.name));
+      setValue({
+        name: dialogValue.name,
+      });
+      handleClose();
+    } else{
+      setInnerError("Veillez valider tous les champs")
+      setInnerErrorNom(true)
+    }
+    
   };
 
   
@@ -81,18 +98,6 @@ const AddClasse = (props) => {
       setErrorNom(true)
     }else {
       setErrorNom(false)
-    }
-  };
-
-  const handleClickAddAS = (e) => {
-    e.preventDefault();
-
-    if(!errorNom && nom.length >2){
-      dispatch(AnneeScolaireAction(nom));
-      // props.onClose();
-    } else{
-      setInnerError("Veillez valider tous les champs")
-      setInnerErrorNom(true)
     }
   };
   
@@ -134,21 +139,22 @@ const AddClasse = (props) => {
 
       <Autocomplete
         value={value}
+        error={setInnerErrorNom}
         onChange={(event, newValue) => {
+           
           if (typeof newValue === 'string') {
             // timeout to avoid instant validation of the dialog's form.
             setTimeout(() => {
               toggleOpen(true);
               setDialogValue({
                 name: newValue,
-                year: '',
               });
             });
+
           } else if (newValue && newValue.inputValue) {
             toggleOpen(true);
             setDialogValue({
               name: newValue.inputValue,
-              year: '',
             });
           } else {
             setValue(newValue);
@@ -187,12 +193,14 @@ const AddClasse = (props) => {
       />
 
     <Dialog open={open} onClose={handleClose}>
-        <form onSubmit={handleSubmit}>
+        {/* <form onSubmit={handleSubmit}> */}
           <DialogTitle>Ajouter une annee Scolaire</DialogTitle>
           <DialogContent>
             <DialogContentText>
              Voulez-vous creer une annee scolaire? Please, add it!
             </DialogContentText>
+      {!innerErrorNom && <Typography variant="body" sx={{ textAlign: 'center', color: 'red', mb: 3 }}>{innerError}</Typography>}
+
             
         <TextField name="nom" label="Nom de la classe"
         error={errorNom} sx={{width: '100%', mt:3}}
@@ -208,9 +216,9 @@ const AddClasse = (props) => {
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Annuler</Button>
-            <Button type="submit">Ajouter</Button>
+            <Button onClick={handleSubmit}>Ajouter</Button>
           </DialogActions>
-        </form>
+        {/* </form> */}
       </Dialog>
 
 
