@@ -1,5 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { faker } from "@faker-js/faker";
+import { sample } from 'lodash';
+
 
 // Here, we are using the createAsyncThunk function to create an asynchronous thunk to fetch 
 // the list of ecole. 
@@ -19,15 +22,14 @@ export const fetchClasse = createAsyncThunk(
 const classeSlice = createSlice({
   name: "classe",
   initialState: {
-    classeList: [
-      {
-        id: "123",
-        name: "1er A",
-        anneeScolaire: "123",
+    classeList: 
+    [...Array(5)].map((_, index) => ({
+        id: faker.datatype.uuid(),
+        name: sample([ `${faker.datatype.number({ min:1, max: 7 })}er`  ]),
+        anneeScolaire: "2023",
         ecole:"123",
-        timestamp: "2023-01-01",
-      }
-    ],
+        timestamp: faker.date.between(),
+      })),
     isLoadingClasse: false,
     errorClasse: null,
   },
