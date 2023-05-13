@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet-async';
 import { useEffect } from 'react';
 
@@ -16,6 +16,7 @@ import { fetchParents } from '../redux/parentsReducer';
 import { fetchEleve } from '../redux/eleveReducer';
 import { fetchCommunication } from '../redux/communicationReducer';
 import { fetchClasse } from '../redux/classeReducer';
+import { ecoleAction } from '../redux/ecoleAction';
 
 function countItems(ar) {
   return ar.length
@@ -23,10 +24,13 @@ function countItems(ar) {
 
 export default function DashboardAppPage() {
 
+  const dispatch = useDispatch();
+
   const { parentList } = useSelector((state) => state.parents);
   const { eleveList } = useSelector((state) => state.eleves);
   const { classeList } = useSelector((state) => state.classes);
   const { communicationList } = useSelector((state) => state.communications);
+  
 
   useEffect(() => {
     // Fetch doctor and patient lists when component mounts
@@ -38,7 +42,8 @@ export default function DashboardAppPage() {
   }, [store.dispatch]);
 
   const handleFillTestData = async () => {
-    const ecoleData = [...Array(1)].map((_, index) => ({
+    
+    const ecoleData = [...Array(5)].map((_, index) => ({
       id: faker.datatype.uuid(),
       name: faker.company.name(), // "Institut Mwanga", 
       phones: [faker.phone.number('+243 9# ### ## ##')],
@@ -48,7 +53,7 @@ export default function DashboardAppPage() {
       website: faker.internet.domainName(),
       timestamp: faker.date.between(),
     }));
-
+    
     const anneeScolaireData = [...Array(1)].map((_, index) => ({
       id: faker.datatype.uuid(),
       name: "2023",
@@ -65,7 +70,13 @@ export default function DashboardAppPage() {
 
     console.log(ClasseData);
 
+    ecoleData.forEach( el => {
+      const nom = el.name;
+      const phone = el.phones[0]; 
+      dispatch(ecoleAction(nom, phone, el.address, el.email, el.website, el.imgUrl));
+    });
 
+    
    
   }
 
