@@ -341,7 +341,7 @@ export default function PatientPage() {
         fullWidth
       >
         <DialogTitle>
-          <Typography>Ajouter un Parent (ou Tuteur)</Typography>
+          Ajouter un Parent (ou Tuteur)
         </DialogTitle>
         <DialogContent>
         <Container sx={{pt: 2}} >

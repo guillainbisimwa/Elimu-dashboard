@@ -6,10 +6,8 @@ import PropTypes from 'prop-types';
 import { LoadingButton } from '@mui/lab';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { classeAction } from '../../../redux/classeAction';
 import { AnneeScolaireAction } from '../../../redux/anneeScolaireAction';
 import { ClasseAction } from '../../../redux/classeAction';
-
 
 const filter = createFilterOptions();
 
@@ -62,17 +60,11 @@ const AddClasse = (props) => {
       setInnerError("Veillez valider tous les champs")
       setInnerErrorNom(true)
     }
-    
   };
 
   
   const handleClick = (e) => {
     e.preventDefault();
-
-    console.log("e",ecoleValue);
-    console.log("V",value);
-    console.log("n",nom);
-    // console.log("a",anneeScolaireList);
 
     if(!errorNom && nom.length >3){
       const id = faker.datatype.uuid();
@@ -187,7 +179,6 @@ const AddClasse = (props) => {
       />
 
     <Dialog open={open} onClose={handleClose}>
-        {/* <form onSubmit={handleSubmit}> */}
           <DialogTitle>Ajouter une annee Scolaire</DialogTitle>
           <DialogContent>
             <DialogContentText>
@@ -212,7 +203,6 @@ const AddClasse = (props) => {
             <Button onClick={handleClose}>Annuler</Button>
             <Button onClick={handleSubmit}>Ajouter</Button>
           </DialogActions>
-        {/* </form> */}
       </Dialog>
 
 

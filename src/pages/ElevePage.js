@@ -78,7 +78,6 @@ export default function ElevePage() {
   const navigate = useNavigate();
 
   const { eleveList } = useSelector((state) => state.eleves);
-  console.log(eleveList);
 
   useEffect(() => {
     // Fetch Eleve and patient lists when component mounts
@@ -330,9 +329,7 @@ export default function ElevePage() {
         maxWidth="sm"
         fullWidth
       >
-        <DialogTitle>
-          <Typography>Ajouter une Eleve</Typography>
-        </DialogTitle>
+        <DialogTitle>Ajouter un Eleve</DialogTitle>
         <DialogContent>
         <Container sx={{pt: 2}} >
           <AddEleve onClose={handleCloseModaEleve} />

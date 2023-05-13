@@ -332,7 +332,7 @@ export default function EcolePage() {
         fullWidth
       >
         <DialogTitle>
-          <Typography>Ajouter une Ecole</Typography>
+          Ajouter une Ecole
         </DialogTitle>
         <DialogContent>
         <Container sx={{pt: 2}} >
