@@ -32,7 +32,7 @@ const AddCommunication = (props) => {
     if(!errorMotif && motif.length >3){
       const id = faker.datatype.uuid();
       const timestamp = faker.date.between();
-      dispatch(CommunicationAction(motif, anneeScolaire, eleve, parent, id, timestamp ));
+      dispatch(CommunicationAction(motif, eleve, id, timestamp ));
       props.onClose();
     } else{
       setError("Veillez valider tous les champs")
@@ -88,7 +88,7 @@ const AddCommunication = (props) => {
           )}
         />  
 
-        <Autocomplete
+        {/* <Autocomplete
           id="combo-box-demo"
           options={parentList}
           isOptionEqualToValue={(option, value) => option === value.name} // Customize the equality test
@@ -139,7 +139,7 @@ const AddCommunication = (props) => {
               label="Annee Scolaire"
             />
           )}
-        />  
+        />   */}
 
        </Stack>
 

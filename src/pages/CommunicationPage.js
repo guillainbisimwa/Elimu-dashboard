@@ -227,11 +227,11 @@ export default function CommunicationPage() {
 
                          <TableCell align="left">{eleve.name}</TableCell>
 
-                         <TableCell align="left">{parent.name}</TableCell>
+                         <TableCell align="left">{eleve.parent.name}</TableCell>
 
                          <TableCell align="left">{eleve.classe.name}</TableCell>
 
-                         <TableCell align="left">{anneeScolaire.name}</TableCell>
+                         <TableCell align="left">{eleve.classe.anneeScolaire.name}</TableCell>
                         
                         <TableCell align="right">
                           <IconButton size="large" color="inherit" onClick={(e)=>{

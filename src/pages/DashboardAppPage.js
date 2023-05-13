@@ -96,9 +96,7 @@ export default function DashboardAppPage() {
     const communicationData = [...Array(5)].map((_, index) => ({
       id: faker.datatype.uuid(),
       motif: faker.lorem.lines(1),
-      anneeScolaire: sample(anneeScolaireData),
       eleve:  sample(eleveData),
-      parent: sample(parentData),
       timestamp: faker.date.between(),
     }));
 
@@ -131,7 +129,7 @@ export default function DashboardAppPage() {
     });
 
     communicationData.forEach( el => {
-      dispatch(CommunicationAction(el.motif, el.anneeScolaire, el.eleve, el.parent,  el.id, el.timestamp));
+      dispatch(CommunicationAction(el.motif, el.eleve, el.id, el.timestamp));
     });
    
   }
