@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { useEffect } from 'react';
 
 import { faker } from "@faker-js/faker";
-import { sample } from 'lodash';
+import { sample, uniq } from 'lodash';
 
 // @mui
 import { Grid, Container, Typography } from '@mui/material';
@@ -38,7 +38,7 @@ export default function DashboardAppPage() {
   }, [store.dispatch]);
 
   const handleFillTestData = async () => {
-    const ecoleData = [...Array(3)].map((_, index) => ({
+    const ecoleData = [...Array(1)].map((_, index) => ({
       id: faker.datatype.uuid(),
       name: faker.company.name(), // "Institut Mwanga", 
       phones: [faker.phone.number('+243 9# ### ## ##')],
@@ -49,23 +49,23 @@ export default function DashboardAppPage() {
       timestamp: faker.date.between(),
     }));
 
-    const ClasseData = [...Array(5)].map((_, index) => ({
-      id: faker.datatype.uuid(),
-      name: sample([ `${faker.datatype.number({ min:1, max: 7 })}er`  ]),
-      anneeScolaire: "2023",
-      ecole: sample(ecoleData.map((value, key)=> value.id)),
-      timestamp: faker.date.between(),
-    }));
-
-    console.log(ClasseData);
-
     const anneeScolaireData = [...Array(1)].map((_, index) => ({
       id: faker.datatype.uuid(),
       name: "2023",
       timestamp: faker.date.between(),
     }));
 
-    
+    const ClasseData = [...Array(10)].map((_, index) => ({
+      id: faker.datatype.uuid(),
+      name: uniq([ `${faker.datatype.number({ min:2, max: 7 })}em ${sample(['A', 'B', ''])}`  ])[0],
+      anneeScolaire: sample(anneeScolaireData),
+      ecole: sample(ecoleData),
+      timestamp: faker.date.between(),
+    }));
+
+    console.log(ClasseData);
+
+
    
   }
 
