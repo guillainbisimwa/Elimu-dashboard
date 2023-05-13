@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { faker } from "@faker-js/faker";
 
 // Here, we are using the createAsyncThunk function to create an asynchronous thunk to fetch 
 // the list of ecole. 
@@ -19,18 +20,18 @@ export const fetchEcole = createAsyncThunk(
 const ecoleSlice = createSlice({
   name: "ecole",
   initialState: {
-    ecoleList: [
-      {
+    ecoleList: 
+      [...Array(3)].map((_, index) => ({
         id: "123",
-        name: "Institut Mwanga",
-        phones: ["+2145654852"],
-        imgUrl: null,
-        email:"test@me.com",
-        address:"Q. Mapendo",
-        website: "www.test.me",
-        timestamp: "2023-01-01",
+        name: faker.company.name(), // "Institut Mwanga", 
+        phones: [faker.phone.number('+243 9# ### ## ##')],
+        imgUrl: faker.image.avatar(),
+        email: faker.internet.email(),
+        address: faker.address.streetAddress(),
+        website: faker.internet.domainName(),
+        timestamp: faker.date.between(),
       }
-    ],
+      )),
     isLoadingEcole: false,
     errorEcole: null,
   },
