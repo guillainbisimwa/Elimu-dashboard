@@ -2,7 +2,7 @@
 
 import { addParentFailure, addParentStart, addParentSuccess } from "./parentsReducer";
 
-export const parentAction = (nom, phone, address, pseudo, imgUrl) => async (dispatch) => {
+export const parentAction = (nom, phone, address, pseudo, imgUrl, id, timestamp) => async (dispatch) => {
   try {
     dispatch(addParentStart());
 
@@ -16,7 +16,7 @@ export const parentAction = (nom, phone, address, pseudo, imgUrl) => async (disp
     // Dispatch loginSuccess action with response data
     // dispatch(addEcoleSuccess(response.data)); // TODO : USE NETWORK
 
-    dispatch(addParentSuccess({pseudo, phones: [...phone], name: nom, address, imgUrl, id:"12366", timestamp: "2023-01-01"})) // TODO : Just for test!
+    dispatch(addParentSuccess({pseudo, phones: [...phone], name: nom, address, imgUrl, id: id=== undefined ? "1235" : id, timestamp: timestamp=== undefined ? "2023-01-01" : timestamp})) // TODO : Just for test!
 
   } catch (error) {
     console.log(error);

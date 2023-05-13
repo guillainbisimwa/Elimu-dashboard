@@ -78,6 +78,8 @@ export default function PatientPage() {
   const navigate = useNavigate();
   const { parentList } = useSelector((state) => state.parents);
 
+  console.log(parentList);
+
   useEffect(() => {
     // Fetch doctor and patient lists when component mounts
     store.dispatch(fetchParents());
