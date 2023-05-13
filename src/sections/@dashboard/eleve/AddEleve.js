@@ -7,8 +7,9 @@ import { LoadingButton } from '@mui/lab';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { parentAction } from '../../../redux/parentAction';
-import { ecoleAction } from '../../../redux/ecoleAction';
 import { EleveAction } from '../../../redux/eleveAction';
+import { ClasseAction } from '../../../redux/classeAction';
+
 
 const filter = createFilterOptions();
 
@@ -17,7 +18,7 @@ const AddEleve = (props) => {
   const dispatch = useDispatch();
 
   const { errorParent, parentList } = useSelector((state) => state.parents);
-  const { errorEcole, ecoleList } = useSelector((state) => state.ecole);
+  const { classeList } = useSelector((state) => state.classes);
 
   const [nom, setNom] = useState('');
   const [phone, setPhone] = useState('');
@@ -33,12 +34,12 @@ const AddEleve = (props) => {
   const [innerError, setInnerError] = useState('');
   const [innerErrorNom, setInnerErrorNom] = useState(false);
 
-  // inner Ecole
-  const [phoneEcole, setPhoneEcole] = useState('');
-  const [addressEcole, setAddressEcole] = useState('');
-  const [emailEcole, setEmailEcole] = useState('');
-  const [websiteEcole, setWebsiteEcole] = useState('');
-  const [imgUrlEcole, setImgUrlEcole] = useState('');
+  // inner Classe
+  const [phoneClasse, setPhoneClasse] = useState('');
+  const [addressClasse, setAddressClasse] = useState('');
+  const [emailClasse, setEmailClasse] = useState('');
+  const [websiteClasse, setWebsiteClasse] = useState('');
+  const [imgUrlClasse, setImgUrlClasse] = useState('');
 
   const [error, setError] = useState('');
   const [errorNom, setErrorNom] = useState(false);
@@ -48,7 +49,10 @@ const AddEleve = (props) => {
     e.preventDefault();
 
     if (!errorNom && !errorPhone && nom.length > 3) {
-      // dispatch(EleveAction(nom, phone, address, pseudo, imgUrl));
+      // nom, phone, address, imgUrl, parent, classe, id, timestamp
+      const id = faker.datatype.uuid();
+      const timestamp = faker.date.between();
+      dispatch(EleveAction( nom, phone, address, '', parent, classe, id, timestamp));
       props.onClose();
     } else {
       setError("Veillez valider tous les champs")
@@ -96,17 +100,17 @@ const AddEleve = (props) => {
     name: '',
   });
 
-  const [ecole, setEcole] = useState(null);
-  const [openEcole, toggleOpenEcole] = useState(false);
+  const [classe, setClasse] = useState(null);
+  const [openClasse, toggleOpenClasse] = useState(false);
 
-  const handleCloseEcole = () => {
-    setDialogEcole({
+  const handleCloseClasse = () => {
+    setDialogClasse({
       name: '',
     });
-    toggleOpenEcole(false);
+    toggleOpenClasse(false);
   };
 
-  const [dialogEcole, setDialogEcole] = useState({
+  const [dialogClasse, setDialogClasse] = useState({
     name: '',
   });
 
@@ -128,17 +132,17 @@ const AddEleve = (props) => {
     }
   };
 
-  const handleSubmitEcole = (event) => {
+  const handleSubmitClasse = (event) => {
     event.preventDefault();
 
-    if (dialogEcole.name?.length > 0) {
+    if (dialogClasse.name?.length > 0) {
       const id = faker.datatype.uuid();
       const timestamp = faker.date.between();
-      dispatch(ecoleAction(dialogEcole.name, phoneEcole, addressEcole, emailEcole, websiteEcole, imgUrlEcole, id, timestamp));
-      setEcole({
-        name: dialogEcole.name,
+      dispatch(ClasseAction(dialogClasse.name, phoneClasse, addressClasse, emailClasse, websiteClasse, imgUrlClasse, id, timestamp));
+      setClasse({
+        name: dialogClasse.name,
       });
-      handleCloseEcole();
+      handleCloseClasse();
     } else {
       // setInnerError("Veillez valider tous les champs")
       // setInnerErrorNom(true)
@@ -243,28 +247,28 @@ const AddEleve = (props) => {
           </DialogActions>
         </Dialog>
 
-        {/* Ecole */}
+        {/* Classe */}
         <Autocomplete
-          value={ecole}
+          value={classe}
           // error={setInnerErrorNom}
           onChange={(event, newValue) => {
 
             if (typeof newValue === 'string') {
               // timeout to avoid instant validation of the dialog's form.
               setTimeout(() => {
-                toggleOpenEcole(true);
-                setDialogEcole({
+                toggleOpenClasse(true);
+                setDialogClasse({
                   name: newValue,
                 });
               });
 
             } else if (newValue && newValue.inputValue) {
-              toggleOpenEcole(true);
-              setDialogEcole({
+              toggleOpenClasse(true);
+              setDialogClasse({
                 name: newValue.inputValue,
               });
             } else {
-              setEcole(newValue);
+              setClasse(newValue);
             }
           }}
           filterOptions={(options, params) => {
@@ -280,7 +284,7 @@ const AddEleve = (props) => {
             return filtered;
           }}
           id="free-solo-dialog"
-          options={ecoleList}
+          options={classeList}
           getOptionLabel={(option) => {
             // e.g value selected with enter, right from the input
             if (typeof option === 'string') {
@@ -296,41 +300,41 @@ const AddEleve = (props) => {
           handleHomeEndKeys
           renderOption={(props, option) => <li {...props}>{option.name}</li>}
           freeSolo
-          renderInput={(params) => <TextField {...params} label="Ecole" />}
+          renderInput={(params) => <TextField {...params} label="Classe" />}
         />
 
-        <Dialog open={openEcole} onClose={handleCloseEcole}>
-          <DialogTitle>Ajouter une Ecole</DialogTitle>
+        <Dialog open={openClasse} onClose={handleCloseClasse}>
+          <DialogTitle>Ajouter une Classe</DialogTitle>
           <DialogContent>
             <DialogContentText>
-              Voulez-vous creer une ecole? Please, add it!
+              Voulez-vous creer une classe? Please, add it!
             </DialogContentText>
             {/* {!innerErrorNom && <Typography variant="body" sx={{ textAlign: 'center', color: 'red', mb: 3 }}>{innerError}</Typography>} */}
 
             <Stack sx={{ mb: 2, gap: 2 }}>
-              <TextField name="nom" label="Nom de l'Ecole"
+              <TextField name="nom" label="Nom de l'Classe"
                 sx={{ width: '100%', mt: 3 }}
-                value={dialogEcole.name}
+                value={dialogClasse.name}
                 onChange={(event) =>
-                  setDialogEcole({
-                    ...dialogEcole,
+                  setDialogClasse({
+                    ...dialogClasse,
                     name: event.target.value,
                   })
                 }
               />
 
-        <TextField name="phone" type='tel' label="Telephone" value={phoneEcole} onChange={(e) => setPhoneEcole(e.target.value)} />
-        <TextField name="address" label="Addresse" value={addressEcole}  onChange={(e) => setAddressEcole(e.target.value)} />
-        <TextField name="email" label="Email" value={emailEcole}  onChange={(e) => setEmailEcole(e.target.value)} />
-        <TextField name="website" label="Site web" value={websiteEcole}  onChange={(e) => setWebsiteEcole(e.target.value)} />
-        <TextField type='file' focused name="imgUrl" label="Lien du logo" value={imgUrlEcole}  onChange={(e) => setImgUrlEcole(e.target.value)} />
+        <TextField name="phone" type='tel' label="Telephone" value={phoneClasse} onChange={(e) => setPhoneClasse(e.target.value)} />
+        <TextField name="address" label="Addresse" value={addressClasse}  onChange={(e) => setAddressClasse(e.target.value)} />
+        <TextField name="email" label="Email" value={emailClasse}  onChange={(e) => setEmailClasse(e.target.value)} />
+        <TextField name="website" label="Site web" value={websiteClasse}  onChange={(e) => setWebsiteClasse(e.target.value)} />
+        <TextField type='file' focused name="imgUrl" label="Lien du logo" value={imgUrlClasse}  onChange={(e) => setImgUrlClasse(e.target.value)} />
       
 
             </Stack>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleCloseEcole}>Annuler</Button>
-            <Button onClick={handleSubmitEcole}>Ajouter</Button>
+            <Button onClick={handleCloseClasse}>Annuler</Button>
+            <Button onClick={handleSubmitClasse}>Ajouter</Button>
           </DialogActions>
         </Dialog>
 

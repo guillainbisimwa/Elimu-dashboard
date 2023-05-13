@@ -205,7 +205,6 @@ const AddClasse = (props) => {
           </DialogActions>
       </Dialog>
 
-
       </Stack>
 
       <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={handleClick} >
