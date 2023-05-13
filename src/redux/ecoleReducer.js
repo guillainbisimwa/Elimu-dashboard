@@ -22,7 +22,7 @@ const ecoleSlice = createSlice({
   initialState: {
     ecoleList: 
       [...Array(3)].map((_, index) => ({
-        id: "123",
+        id: faker.datatype.uuid(),
         name: faker.company.name(), // "Institut Mwanga", 
         phones: [faker.phone.number('+243 9# ### ## ##')],
         imgUrl: faker.image.avatar(),

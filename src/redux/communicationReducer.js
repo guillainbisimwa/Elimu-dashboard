@@ -1,3 +1,4 @@
+import { faker } from "@faker-js/faker";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -19,16 +20,26 @@ export const fetchCommunication = createAsyncThunk(
 const communicationSlice = createSlice({
   name: "communication",
   initialState: {
-    communicationList: [
-      {
+    communicationList: 
+      // [...Array(50)].map((_, index) => ({
+      //   id: faker.datatype.uuid(),
+      //   motif: faker.lorem.lines(3),
+      //   anneeScolaire: "123",
+      //   // phone: faker.phone.phoneNumber('+243 9# ### ## ##'),
+      //   eleve: faker.name.full(),
+      //   parent: faker.name.lastName(),
+      //   timestamp: faker.date.between()
+      // })
+      // ) 
+      [{
         id: "123",
-        motif: "Frais 1 ere tranche",
+        motif: faker.lorem.lines(3),
         anneeScolaire: "123",
         eleve: "123",
         parent: "123",
         timestamp: "2023-01-01",
-      }
-    ],
+      }]
+    ,
     isLoadingCommunication: false,
     errorCommunication: null,
   },

@@ -78,6 +78,7 @@ export default function EcolePage() {
   const navigate = useNavigate();
 
   const { ecoleList } = useSelector((state) => state.ecole);
+  console.log(ecoleList);
 
   useEffect(() => {
     // Fetch Ecole and patient lists when component mounts
@@ -209,7 +210,7 @@ export default function EcolePage() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, email, phones, address, website } = row;
+                    const { id, name, email, phones, address, website, imgUrl } = row;
                     const selectedUser = selected.indexOf(name) !== -1;
 
                     return (
@@ -220,10 +221,11 @@ export default function EcolePage() {
 
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
-                            <Avatar alt={name} >
+                            {/* <Avatar alt={name} >
                               {name.charAt(0)}
-                            </Avatar>
-                            
+                            </Avatar> */}
+                            <Avatar src={imgUrl} alt="photoURL" />
+
                             <Typography variant="subtitle2" noWrap>
                               {name}
                             </Typography>
