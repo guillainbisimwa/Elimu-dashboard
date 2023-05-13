@@ -13,13 +13,9 @@ const AddCommunication = (props) => {
   const dispatch = useDispatch();
 
   const { errorEcole } = useSelector((state) => state.ecole);
-  const { anneeScolaireList } = useSelector((state) => state.anneeScolaire);
-  const { parentList } = useSelector((state) => state.parents);
   const { eleveList } = useSelector((state) => state.eleves);
 
   const [motif, setMotif] = useState('');
-  const [anneeScolaire, setAnneeScolaire] = useState('');
-  const [parent, setParent] = useState('');
   const [eleve, setEleve] = useState('');
   
 
@@ -87,60 +83,6 @@ const AddCommunication = (props) => {
             />
           )}
         />  
-
-        {/* <Autocomplete
-          id="combo-box-demo"
-          options={parentList}
-          isOptionEqualToValue={(option, value) => option === value.name} // Customize the equality test
-          value={parent}
-          getOptionLabel={(option) => {
-            // e.g value selected with enter, right from the input
-            if (typeof option === 'string') {
-              return option;
-            }
-            if (option.inputValue) {
-              return option.inputValue;
-            }
-            return option.name;
-          }}
-          onChange={(event, newValue) => {
-            setParent(newValue);
-          }}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label="Parent"
-            />
-          )}
-        />
-
-        <Autocomplete
-          id="combo-box-demo"
-          options={anneeScolaireList}
-          isOptionEqualToValue={(option, value) => option === value.name} // Customize the equality test
-          value={anneeScolaire}
-          onChange={(event, newValue) => {
-            setAnneeScolaire(newValue);
-          }}
-          getOptionLabel={(option) => {
-            // e.g value selected with enter, right from the input
-            if (typeof option === 'string') {
-              return option;
-            }
-            if (option.inputValue) {
-              return option.inputValue;
-            }
-            return option.name;
-          }}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              
-              label="Annee Scolaire"
-            />
-          )}
-        />   */}
-
        </Stack>
 
       <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={handleClick} >

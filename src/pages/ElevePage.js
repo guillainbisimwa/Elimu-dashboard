@@ -212,7 +212,7 @@ export default function ElevePage() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, parent, phones, address, classe } = row;
+                    const { id, name, parent, address, classe } = row;
                     const sex = faker.name.sex();
                     console.log(sex);
                     const selectedUser = selected.indexOf(name) !== -1;

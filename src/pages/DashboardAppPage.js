@@ -47,7 +47,7 @@ export default function DashboardAppPage() {
 
   const handleFillTestData = async () => {
     
-    const ecoleData = [...Array(1)].map((_, index) => ({
+    const ecoleData = [...Array(1)].map(() => ({
       id: faker.datatype.uuid(),
       name: faker.company.name(), // "Institut Mwanga", 
       phones: [faker.phone.number('+243 9# ### ## ##')],
@@ -58,7 +58,7 @@ export default function DashboardAppPage() {
       timestamp: faker.date.between(),
     }));
 
-    const parentData = [...Array(4)].map((_, index) => ({
+    const parentData = [...Array(4)].map(() => ({
       id: faker.datatype.uuid(),
       name: `${faker.name.firstName()} ${faker.name.lastName()}`, 
       pseudo: faker.name.middleName(), 
@@ -68,13 +68,13 @@ export default function DashboardAppPage() {
       timestamp: faker.date.between(),
     }));
     
-    const anneeScolaireData = [...Array(1)].map((_, index) => ({
+    const anneeScolaireData = [...Array(1)].map(() => ({
       id: faker.datatype.uuid(),
       name: "2023",
       timestamp: faker.date.between(),
     }));
 
-    const ClasseData = [...Array(3)].map((_, index) => ({
+    const ClasseData = [...Array(3)].map(() => ({
       id: faker.datatype.uuid(),
       name: uniq([ `${faker.datatype.number({ min:2, max: 7 })}em ${sample(['A', 'B', ''])}`  ])[0],
       anneeScolaire: sample(anneeScolaireData),
@@ -82,7 +82,7 @@ export default function DashboardAppPage() {
       timestamp: faker.date.between(),
     }));
 
-    const eleveData = [...Array(12)].map((_, index) => ({
+    const eleveData = [...Array(12)].map(() => ({
       id: faker.datatype.uuid(),
       name: `${faker.name.firstName()} ${faker.name.lastName()}`,
       phones: [faker.phone.number('+243 9# ### ## ##')],
@@ -93,7 +93,7 @@ export default function DashboardAppPage() {
       timestamp: faker.date.between(),
     }));
 
-    const communicationData = [...Array(5)].map((_, index) => ({
+    const communicationData = [...Array(5)].map(() => ({
       id: faker.datatype.uuid(),
       motif: faker.lorem.lines(1),
       eleve:  sample(eleveData),

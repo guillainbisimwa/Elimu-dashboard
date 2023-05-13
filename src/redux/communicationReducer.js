@@ -1,4 +1,3 @@
-import { faker } from "@faker-js/faker";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 

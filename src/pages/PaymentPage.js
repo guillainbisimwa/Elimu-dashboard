@@ -209,7 +209,7 @@ export default function PaymentPage() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, email, phones, address, website, montant } = row;
+                    const { id, email, phones, address, website, montant } = row;
                     const selectedUser = selected.indexOf(montant) !== -1;
 
                     return (

@@ -10,7 +10,6 @@ import {
   Table,
   Stack,
   Paper,
-  Avatar,
   Popover,
   Checkbox,
   TableRow,
@@ -212,7 +211,7 @@ export default function CommunicationPage() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, motif, eleve, parent, anneeScolaire } = row;
+                    const { id, motif, eleve } = row;
                     const selectedUser = selected.indexOf(motif) !== -1;
 
                     return (
