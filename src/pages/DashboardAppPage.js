@@ -17,6 +17,8 @@ import { fetchEleve } from '../redux/eleveReducer';
 import { fetchCommunication } from '../redux/communicationReducer';
 import { fetchClasse } from '../redux/classeReducer';
 import { ecoleAction } from '../redux/ecoleAction';
+import { AnneeScolaireAction } from '../redux/anneeScolaireAction';
+import { ClasseAction } from '../redux/classeAction';
 
 function countItems(ar) {
   return ar.length
@@ -30,8 +32,6 @@ export default function DashboardAppPage() {
   const { eleveList } = useSelector((state) => state.eleves);
   const { classeList } = useSelector((state) => state.classes);
   const { communicationList } = useSelector((state) => state.communications);
-  const { ecoleList } = useSelector((state) => state.ecole);
-  
 
   useEffect(() => {
     // Fetch doctor and patient lists when component mounts
@@ -44,7 +44,7 @@ export default function DashboardAppPage() {
 
   const handleFillTestData = async () => {
     
-    const ecoleData = [...Array(5)].map((_, index) => ({
+    const ecoleData = [...Array(1)].map((_, index) => ({
       id: faker.datatype.uuid(),
       name: faker.company.name(), // "Institut Mwanga", 
       phones: [faker.phone.number('+243 9# ### ## ##')],
@@ -76,16 +76,15 @@ export default function DashboardAppPage() {
       dispatch(ecoleAction(nom, phone, el.address, el.email, el.website, el.imgUrl, el.id, el.timestamp));
     });
 
-    console.log('ecoleData',ecoleData);
+    anneeScolaireData.forEach( el => {
+      const nom = el.name;
+      dispatch(AnneeScolaireAction(nom, el.id, el.timestamp));
+    });
 
-    console.log("ecoleList",ecoleList);
-    // anneeScolaireData.forEach( el => {
-    //   const nom = el.name;
-    //   const phone = el.phones[0]; 
-    //   dispatch(ecoleAction(nom, phone, el.address, el.email, el.website, el.imgUrl));
-    // });
-
-    
+    ClasseData.forEach( el => {
+      const nom = el.name;
+      dispatch(ClasseAction(nom, el.anneeScolaire, el.ecole, el.id, el.timestamp));
+    });
    
   }
 

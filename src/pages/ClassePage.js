@@ -228,9 +228,9 @@ export default function ClassePage() {
                           </Stack>
                         </TableCell>
 
-                         <TableCell align="left">{ecole}</TableCell>
+                         <TableCell align="left">{ecole.name}</TableCell>
 
-                         <TableCell align="left">{anneeScolaire}</TableCell>
+                         <TableCell align="left">{anneeScolaire.name}</TableCell>
 
                         <TableCell align="right">
                           <IconButton size="large" color="inherit" onClick={(e)=>{

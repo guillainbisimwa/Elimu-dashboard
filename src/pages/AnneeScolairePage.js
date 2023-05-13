@@ -75,8 +75,6 @@ export default function AnneeScolairePage() {
 
   const { anneeScolaireList } = useSelector((state) => state.anneeScolaire);
 
-  console.log("anneeScolaireList", anneeScolaireList);
-
   useEffect(() => {
     // Fetch AnneeScolaire and patient lists when component mounts
     store.dispatch(fetchAnneeScolaire());
