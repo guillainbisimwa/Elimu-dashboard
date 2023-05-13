@@ -75,7 +75,7 @@ const communicationSlice = createSlice({
       })
       .addCase(fetchCommunication.rejected, (state, action) => {
         state.isLoadingCommunication = false;
-        state.errorCommunication = action.errorCommunication.message;
+        state.errorCommunication = action.payload;
       });
   },
 });

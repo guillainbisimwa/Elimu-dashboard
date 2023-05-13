@@ -64,7 +64,7 @@ const paymentSlice = createSlice({
       })
       .addCase(fetchPayment.rejected, (state, action) => {
         state.isLoadingPayment = false;
-        state.errorPayment = action.errorPayment.message;
+        state.errorPayment = action.payload;
       });
   },
 });

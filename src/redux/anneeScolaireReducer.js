@@ -55,7 +55,7 @@ const anneeScolaireSlice = createSlice({
       })
       .addCase(fetchAnneeScolaire.rejected, (state, action) => {
         state.isLoadingAnneeScolaire = false;
-        state.errorAnneeScolaire = action.errorAnneeScolaire.message;
+        state.errorAnneeScolaire = action.payload;
       });
   },
 });

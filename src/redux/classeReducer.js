@@ -55,7 +55,7 @@ const classeSlice = createSlice({
       })
       .addCase(fetchClasse.rejected, (state, action) => {
         state.isLoadingClasse = false;
-        state.errorClasse = action.errorClasse.message;
+        state.errorClasse = action.payload;
       });
   },
 });

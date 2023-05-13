@@ -68,7 +68,7 @@ const parentsSlice = createSlice({
       })
       .addCase(fetchParents.rejected, (state, action) => {
         state.isLoadingParent = false;
-        state.errorParent = action.errorParent.message;
+        state.errorParent = action.payload;
       });
   },
 });

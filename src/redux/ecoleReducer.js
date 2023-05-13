@@ -55,7 +55,7 @@ const ecoleSlice = createSlice({
       })
       .addCase(fetchEcole.rejected, (state, action) => {
         state.isLoadingEcole = false;
-        state.errorEcole = action.errorEcole.message;
+        state.errorEcole = action.payload;
       });
   },
 });

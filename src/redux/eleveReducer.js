@@ -66,7 +66,7 @@ const eleveSlice = createSlice({
       })
       .addCase(fetchEleve.rejected, (state, action) => {
         state.isLoadingEleve = false;
-        state.errorEleve = action.errorEleve.message;
+        state.errorEleve = action.payload;
       });
   },
 });
