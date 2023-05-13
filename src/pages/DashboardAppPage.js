@@ -1,8 +1,13 @@
 import { useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet-async';
 import { useEffect } from 'react';
+
+import { faker } from "@faker-js/faker";
+import { sample } from 'lodash';
+
 // @mui
 import { Grid, Container, Typography } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
 import {
   AppWidgetSummary,
 } from '../sections/@dashboard/app';
@@ -31,6 +36,38 @@ export default function DashboardAppPage() {
     store.dispatch(fetchClasse());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [store.dispatch]);
+
+  const handleFillTestData = async () => {
+    const ecoleData = [...Array(3)].map((_, index) => ({
+      id: faker.datatype.uuid(),
+      name: faker.company.name(), // "Institut Mwanga", 
+      phones: [faker.phone.number('+243 9# ### ## ##')],
+      imgUrl: faker.image.avatar(),
+      email: faker.internet.email(),
+      address: faker.address.streetAddress(),
+      website: faker.internet.domainName(),
+      timestamp: faker.date.between(),
+    }));
+
+    const ClasseData = [...Array(5)].map((_, index) => ({
+      id: faker.datatype.uuid(),
+      name: sample([ `${faker.datatype.number({ min:1, max: 7 })}er`  ]),
+      anneeScolaire: "2023",
+      ecole: sample(ecoleData.map((value, key)=> value.id)),
+      timestamp: faker.date.between(),
+    }));
+
+    console.log(ClasseData);
+
+    const anneeScolaireData = [...Array(1)].map((_, index) => ({
+      id: faker.datatype.uuid(),
+      name: "2023",
+      timestamp: faker.date.between(),
+    }));
+
+    
+   
+  }
 
   return (
     <>
@@ -61,6 +98,8 @@ export default function DashboardAppPage() {
           </Grid>
 
         </Grid>
+        <LoadingButton size='large'  variant="contained"  color="error" sx={{ textAlign: 'center' }}
+              onClick={() => handleFillTestData()} >TEST</LoadingButton>
       </Container>
     </>
   );

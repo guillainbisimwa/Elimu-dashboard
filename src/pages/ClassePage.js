@@ -77,8 +77,6 @@ export default function ClassePage() {
 
   const { classeList } = useSelector((state) => state.classes);
 
-  console.log(classeList);
-
   useEffect(() => {
     // Fetch Classe and patient lists when component mounts
     store.dispatch(fetchClasse());
