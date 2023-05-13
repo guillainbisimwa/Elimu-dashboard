@@ -79,6 +79,8 @@ export default function EcolePage() {
 
   const { ecoleList } = useSelector((state) => state.ecole);
 
+  console.log(ecoleList);
+
   useEffect(() => {
     // Fetch Ecole and patient lists when component mounts
     store.dispatch(fetchEcole());

@@ -30,6 +30,7 @@ export default function DashboardAppPage() {
   const { eleveList } = useSelector((state) => state.eleves);
   const { classeList } = useSelector((state) => state.classes);
   const { communicationList } = useSelector((state) => state.communications);
+  const { ecoleList } = useSelector((state) => state.ecole);
   
 
   useEffect(() => {
@@ -68,13 +69,21 @@ export default function DashboardAppPage() {
       timestamp: faker.date.between(),
     }));
 
-    console.log(ClasseData);
 
     ecoleData.forEach( el => {
       const nom = el.name;
       const phone = el.phones[0]; 
-      dispatch(ecoleAction(nom, phone, el.address, el.email, el.website, el.imgUrl));
+      dispatch(ecoleAction(nom, phone, el.address, el.email, el.website, el.imgUrl, el.id, el.timestamp));
     });
+
+    console.log('ecoleData',ecoleData);
+
+    console.log("ecoleList",ecoleList);
+    // anneeScolaireData.forEach( el => {
+    //   const nom = el.name;
+    //   const phone = el.phones[0]; 
+    //   dispatch(ecoleAction(nom, phone, el.address, el.email, el.website, el.imgUrl));
+    // });
 
     
    
