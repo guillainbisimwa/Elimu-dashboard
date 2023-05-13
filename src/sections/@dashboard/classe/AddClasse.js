@@ -1,5 +1,6 @@
 
 import { Autocomplete, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack, TextField, Typography, createFilterOptions} from '@mui/material';
+import { faker } from "@faker-js/faker";
 
 import PropTypes from 'prop-types';
 import { LoadingButton } from '@mui/lab';
@@ -7,9 +8,10 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import { classeAction } from '../../../redux/classeAction';
 import { AnneeScolaireAction } from '../../../redux/anneeScolaireAction';
+import { ClasseAction } from '../../../redux/classeAction';
+
 
 const filter = createFilterOptions();
-
 
 const AddClasse = (props) => {
 
@@ -17,7 +19,6 @@ const AddClasse = (props) => {
 
   const { errorClasse } = useSelector((state) => state.classes);
   const { ecoleList } = useSelector((state) => state.ecole);
-  console.log("ecoleList",ecoleList);
   const { anneeScolaireList } = useSelector((state) => state.anneeScolaire);
 
 
@@ -51,17 +52,6 @@ const AddClasse = (props) => {
     event.preventDefault();
     setInnerErrorNom( !dialogValue.name?.length < 3)
 
-    console.log('dialogValue.name', dialogValue.name?.length);
-    console.log(innerError);
-    console.log(innerErrorNom);
-    // console.log("dialogValue.name?.length < 4", dialogValue.name?.length < 4);
-    // if(dialogValue.name?.length < 4){
-    //   setInnerErrorNom(true)
-    // }else {
-    //   setInnerErrorNom(false)
-    // }
-   
-
     if(!innerErrorNom){
       dispatch(AnneeScolaireAction(dialogValue.name));
       setValue({
@@ -80,10 +70,14 @@ const AddClasse = (props) => {
     e.preventDefault();
 
     console.log("e",ecoleValue);
+    console.log("V",value);
+    console.log("n",nom);
     // console.log("a",anneeScolaireList);
 
     if(!errorNom && nom.length >3){
-      // dispatch(classeAction(nom, anneeScolaire, ecole, id, timestamp));
+      const id = faker.datatype.uuid();
+      const timestamp = faker.date.between();
+      dispatch(ClasseAction(nom, value, ecoleValue, id, timestamp));
       props.onClose();
     } else{
       setError("Veillez valider tous les champs")

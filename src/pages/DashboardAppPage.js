@@ -44,7 +44,7 @@ export default function DashboardAppPage() {
 
   const handleFillTestData = async () => {
     
-    const ecoleData = [...Array(5)].map((_, index) => ({
+    const ecoleData = [...Array(1)].map((_, index) => ({
       id: faker.datatype.uuid(),
       name: faker.company.name(), // "Institut Mwanga", 
       phones: [faker.phone.number('+243 9# ### ## ##')],
@@ -61,7 +61,7 @@ export default function DashboardAppPage() {
       timestamp: faker.date.between(),
     }));
 
-    const ClasseData = [...Array(10)].map((_, index) => ({
+    const ClasseData = [...Array(3)].map((_, index) => ({
       id: faker.datatype.uuid(),
       name: uniq([ `${faker.datatype.number({ min:2, max: 7 })}em ${sample(['A', 'B', ''])}`  ])[0],
       anneeScolaire: sample(anneeScolaireData),
