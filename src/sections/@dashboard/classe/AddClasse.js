@@ -1,37 +1,42 @@
 
-import { Stack, TextField, Typography} from '@mui/material';
+import { Autocomplete, Stack, TextField, Typography} from '@mui/material';
 import PropTypes from 'prop-types';
 import { LoadingButton } from '@mui/lab';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { parentAction } from '../../../redux/parentAction';
+// import { classeAction } from '../../../redux/classeAction';
 
-const AddEleve = (props) => {
+const AddClasse = (props) => {
 
   const dispatch = useDispatch();
 
-  const { errorParent } = useSelector((state) => state.parents);
+  const { errorClasse } = useSelector((state) => state.classes);
+  const { ecoleList } = useSelector((state) => state.ecole);
+  console.log("ecoleList",ecoleList);
+  const { anneeScolaireList } = useSelector((state) => state.anneeScolaire);
+
 
   const [nom, setNom] = useState('');
-  const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
-  const [pseudo, setPseudo] = useState('');
-  const [imgUrl, setImgUrl] = useState('');
 
   const [error, setError] = useState('');
   const [errorNom, setErrorNom] = useState(false);
-  const [errorPhone, setErrorPhone] = useState(false);
+
+  const [ecoleValue, setEcoleValue] = useState();
+  const [inputEcoleValue, setInputEcoleValue] = useState('');
+
   
   const handleClick = (e) => {
     e.preventDefault();
 
-    if(!errorNom && !errorPhone && nom.length >3){
-      dispatch(parentAction(nom, phone, address, pseudo, imgUrl));
+    console.log("e",ecoleValue);
+    // console.log("a",anneeScolaireList);
+
+    if(!errorNom && nom.length >3){
+      // dispatch(classeAction(nom, anneeScolaire, ecole, id, timestamp));
       props.onClose();
     } else{
       setError("Veillez valider tous les champs")
       setErrorNom(true)
-      setErrorPhone(true)
     }
   };
 
@@ -45,29 +50,39 @@ const AddEleve = (props) => {
     }
   };
   
-  const handleCheckPhone = (e) => {
-    e.preventDefault();
-    setPhone(e.target.value);
-    if(phone.length < 9){
-      setErrorPhone(true)
-    }else {
-      setErrorPhone(false)
-    }
-  };
 
   return (
     <>
       <Stack sx={{mb: 2, gap: 2}}>
-      {errorParent && <Typography variant="body" sx={{ textAlign: 'center', color: 'red', mb: 3 }}>{errorParent}</Typography>}
+      {errorClasse && <Typography variant="body" sx={{ textAlign: 'center', color: 'red', mb: 3 }}>{errorClasse}</Typography>}
       {error && <Typography variant="body" sx={{ textAlign: 'center', color: 'red', mb: 3 }}>{error}</Typography>}
 
-        <TextField name="nom" label="Nom du parent" value={nom} onChange={(e) =>{ handleCheckNom(e)}} 
+        <TextField name="nom" label="Nom de la classe" value={nom} onChange={(e) =>{ handleCheckNom(e)}} 
         error={errorNom} />
-        <TextField name="phone" type='tel' label="Telephone" value={phone}   onChange={(e) =>{ handleCheckPhone(e)}}
-         error={errorPhone} />
-        <TextField name="address" label="Addresse" value={address}  onChange={(e) => setAddress(e.target.value)} />
-        <TextField name="pseudo" label="Pseudo" value={pseudo}  onChange={(e) => setPseudo(e.target.value)} />
-        <TextField type='file' focused name="imgUrl" label="Photo" value={imgUrl}  onChange={(e) => setImgUrl(e.target.value)} />
+        
+        <Autocomplete
+          disablePortal
+          id="combo-box-demo"
+          options={[...ecoleList]}
+          getOptionLabel={(option) => option.name}
+
+          isOptionEqualToValue={(option, value) => option.name === value} // Customize the equality test
+          value={ecoleValue}
+          onChange={(event, newValue) => {
+            setEcoleValue(newValue);
+          }}
+          inputValue={inputEcoleValue}
+          onInputChange={(event, newInputValue) => {
+            setInputEcoleValue(newInputValue);
+          }}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              error={errorNom}
+              label="Ecole"
+            />
+          )}
+        />
       </Stack>
 
       <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={handleClick} >
@@ -77,9 +92,9 @@ const AddEleve = (props) => {
   );
 }
 
-AddEleve.propTypes = {
+AddClasse.propTypes = {
   onClose: PropTypes.func,
 };
 
-export default AddEleve;
+export default AddClasse;
 
