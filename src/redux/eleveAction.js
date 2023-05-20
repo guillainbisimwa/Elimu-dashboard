@@ -2,7 +2,7 @@
 import { addEleveFailure, addEleveStart, addEleveSuccess } from './eleveReducer';
 
 
-export const EleveAction = (nom, phone, address, imgUrl, parent, classe) => async (dispatch) => {
+export const EleveAction = (nom, phone, address, imgUrl, parent, classe, id, timestamp) => async (dispatch) => {
   try {
     dispatch(addEleveStart());
 
@@ -16,7 +16,7 @@ export const EleveAction = (nom, phone, address, imgUrl, parent, classe) => asyn
     // Dispatch loginSuccess action with response data
     // dispatch(addEleveSuccess(response.data)); // TODO : USE NETWORK
 
-    dispatch(addEleveSuccess({name: nom, phones: [...phone], address, imgUrl, parent, classe, id:"12355", timestamp: "2023-01-01"})) // TODO : Just for test!
+    dispatch(addEleveSuccess({name: nom, phones: [...phone], address, imgUrl, parent, classe,  id: id=== undefined ? "1235" : id, timestamp: timestamp=== undefined ? "2023-01-01" : timestamp})) // TODO : Just for test!
 
   } catch (error) {
     console.log(error);

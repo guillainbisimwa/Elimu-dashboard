@@ -10,7 +10,6 @@ import {
   Table,
   Stack,
   Paper,
-  Avatar,
   Popover,
   Checkbox,
   TableRow,
@@ -37,13 +36,14 @@ import { fetchCommunication } from '../redux/communicationReducer';
 import { store } from '../redux/Store';
 
 const TABLE_HEAD = [
-  { id: 'name', label: 'Name', alignRight: false },
-  { id: 'email', label: 'Email', alignRight: false },
-  { id: 'phones', label: 'Phones', alignRight: false },
-  { id: 'address', label: 'Address', alignRight: false },
-  { id: 'website', label: 'Website', alignRight: false },
+  { id: 'motif', label: 'Motif', alignRight: false },
+  { id: 'eleve', label: 'Eleve', alignRight: false },
+  { id: 'parent', label: 'Parent', alignRight: false },
+  { id: 'classe', label: 'Classe', alignRight: false },
+  { id: 'anneeScolaire', label: 'Annee Scolaire', alignRight: false },
   { id: '' },
 ];
+
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -78,6 +78,8 @@ export default function CommunicationPage() {
   const navigate = useNavigate();
 
   const { communicationList } = useSelector((state) => state.communications);
+
+  console.log(communicationList);
 
   useEffect(() => {
     // Fetch Communication and patient lists when component mounts
@@ -209,34 +211,26 @@ export default function CommunicationPage() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, email, phones, address, website } = row;
-                    const selectedUser = selected.indexOf(name) !== -1;
+                    const { id, motif, eleve } = row;
+                    const selectedUser = selected.indexOf(motif) !== -1;
 
                     return (
                       <TableRow hover key={id} tabIndex={-1} role="checkbox" selected={selectedUser}>
                         <TableCell padding="checkbox">
-                          <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, name)} />
+                          <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, motif)} />
                         </TableCell>
 
-                        <TableCell component="th" scope="row" padding="none">
-                          <Stack direction="row" alignItems="center" spacing={2}>
-                            <Avatar alt={name} >
-                              {/* {name.charAt(0)} */}
-                            </Avatar>
-                            
-                            <Typography variant="subtitle2" noWrap>
-                              {name}
-                            </Typography>
-                          </Stack>
+                        <TableCell component="th" scope="row" padding="none"  >
+                          {motif}
                         </TableCell>
 
-                         <TableCell align="left">{email}</TableCell>
+                         <TableCell align="left">{eleve.name}</TableCell>
 
-                         <TableCell align="left">{phones}</TableCell>
+                         <TableCell align="left">{eleve.parent.name}</TableCell>
 
-                         <TableCell align="left">{address}</TableCell>
+                         <TableCell align="left">{eleve.classe.name}</TableCell>
 
-                         <TableCell align="left">{website}</TableCell>
+                         <TableCell align="left">{eleve.classe.anneeScolaire.name}</TableCell>
                         
                         <TableCell align="right">
                           <IconButton size="large" color="inherit" onClick={(e)=>{
@@ -328,9 +322,7 @@ export default function CommunicationPage() {
         maxWidth="sm"
         fullWidth
       >
-        <DialogTitle>
-          <Typography>Ajouter une Communication</Typography>
-        </DialogTitle>
+        <DialogTitle>Ajouter une Communication</DialogTitle>
         <DialogContent>
         <Container sx={{pt: 2}} >
           <AddCommunication onClose={handleCloseModaCommunication} />

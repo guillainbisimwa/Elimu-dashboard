@@ -2,7 +2,7 @@
 import { addAnneeScolaireFailure, addAnneeScolaireStart, addAnneeScolaireSuccess } from './anneeScolaireReducer';
 
 
-export const AnneeScolaireAction = (nom) => async (dispatch) => {
+export const AnneeScolaireAction = (nom, id, timestamp) => async (dispatch) => {
   try {
     dispatch(addAnneeScolaireStart());
 
@@ -16,7 +16,7 @@ export const AnneeScolaireAction = (nom) => async (dispatch) => {
     // Dispatch loginSuccess action with response data
     // dispatch(addAnneeScolaireSuccess(response.data)); // TODO : USE NETWORK
 
-    dispatch(addAnneeScolaireSuccess({name: nom, id:"12355", timestamp: "2023-01-01"})) // TODO : Just for test!
+    dispatch(addAnneeScolaireSuccess({name: nom, id: id=== undefined ? "1235" : id, timestamp: timestamp=== undefined ? "2023-01-01" : timestamp})) // TODO : Just for test!
 
   } catch (error) {
     console.log(error);

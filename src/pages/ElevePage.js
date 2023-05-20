@@ -1,5 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { filter } from 'lodash';
+import { faker } from "@faker-js/faker";
+
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -35,13 +37,14 @@ import Scrollbar from '../components/scrollbar';
 import { AddEleve, EleveListHead, EleveListToolbar } from '../sections/@dashboard/eleve';
 import { fetchEleve } from '../redux/eleveReducer';
 import { store } from '../redux/Store';
+import Label from '../components/label/Label';
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
-  { id: 'email', label: 'Email', alignRight: false },
-  { id: 'phones', label: 'Phones', alignRight: false },
+  { id: 'sex', label: 'Sexe', alignRight: false },
   { id: 'address', label: 'Address', alignRight: false },
-  { id: 'website', label: 'Website', alignRight: false },
+  { id: 'parent', label: 'Parent', alignRight: false },
+  { id: 'classe', label: 'Classe', alignRight: false },
   { id: '' },
 ];
 
@@ -209,7 +212,9 @@ export default function ElevePage() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, email, phones, address, website } = row;
+                    const { id, name, parent, address, classe } = row;
+                    const sex = faker.name.sex();
+                    console.log(sex);
                     const selectedUser = selected.indexOf(name) !== -1;
 
                     return (
@@ -230,13 +235,15 @@ export default function ElevePage() {
                           </Stack>
                         </TableCell>
 
-                         <TableCell align="left">{email}</TableCell>
-
-                         <TableCell align="left">{phones}</TableCell>
+                        <TableCell align="left">
+                          <Label color={(sex === 'female' && 'error') || 'success'}>{sex.charAt(0)}</Label>
+                        </TableCell>
 
                          <TableCell align="left">{address}</TableCell>
 
-                         <TableCell align="left">{website}</TableCell>
+                         <TableCell align="left">{parent.name}</TableCell>
+
+                         <TableCell align="left">{classe.name}</TableCell>
                         
                         <TableCell align="right">
                           <IconButton size="large" color="inherit" onClick={(e)=>{
@@ -328,9 +335,7 @@ export default function ElevePage() {
         maxWidth="sm"
         fullWidth
       >
-        <DialogTitle>
-          <Typography>Ajouter une Eleve</Typography>
-        </DialogTitle>
+        <DialogTitle>Ajouter un Eleve</DialogTitle>
         <DialogContent>
         <Container sx={{pt: 2}} >
           <AddEleve onClose={handleCloseModaEleve} />

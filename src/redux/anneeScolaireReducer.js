@@ -19,13 +19,7 @@ export const fetchAnneeScolaire = createAsyncThunk(
 const anneeScolaireSlice = createSlice({
   name: "anneeScolaire",
   initialState: {
-    anneeScolaireList: [
-      {
-        id: "123",
-        name: "2023",
-        timestamp: "2023-01-01",
-      }
-    ],
+    anneeScolaireList: [],
     isLoadingAnneeScolaire: false,
     errorAnneeScolaire: null,
   },
@@ -61,7 +55,7 @@ const anneeScolaireSlice = createSlice({
       })
       .addCase(fetchAnneeScolaire.rejected, (state, action) => {
         state.isLoadingAnneeScolaire = false;
-        state.errorAnneeScolaire = action.errorAnneeScolaire.message;
+        state.errorAnneeScolaire = action.payload;
       });
   },
 });

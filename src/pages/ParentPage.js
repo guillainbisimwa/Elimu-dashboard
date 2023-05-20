@@ -1,5 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { filter } from 'lodash';
+import { faker } from "@faker-js/faker";
+
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -35,11 +37,13 @@ import Scrollbar from '../components/scrollbar';
 import { AddParent, ParentListHead, ParentListToolbar } from '../sections/@dashboard/parent';
 import { store } from '../redux/Store';
 import { fetchParents } from '../redux/parentsReducer';
+import Label from '../components/label/Label';
 
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
   { id: 'pseudo', label: 'Pseudo', alignRight: false },
+  { id: 'sex', label: 'Sexe', alignRight: false },
   { id: 'phones', label: 'Phone Number', alignRight: false },
   { id: 'address', label: 'Address', alignRight: false },
   { id: '' },
@@ -77,6 +81,8 @@ function applySortFilter(array, comparator, query) {
 export default function PatientPage() {
   const navigate = useNavigate();
   const { parentList } = useSelector((state) => state.parents);
+
+  console.log(parentList);
 
   useEffect(() => {
     // Fetch doctor and patient lists when component mounts
@@ -208,6 +214,8 @@ export default function PatientPage() {
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                     const { id, name, pseudo, phones, address } = row;
+                    const sex = faker.name.sex();
+                    console.log(sex);
 
                     const selectedUser = selected.indexOf(name) !== -1;
 
@@ -228,8 +236,12 @@ export default function PatientPage() {
                             </Typography>
                           </Stack>
                         </TableCell>
-
-                         <TableCell align="left">{pseudo}</TableCell>
+                        
+                        <TableCell align="left">{pseudo}</TableCell>
+                         
+                        <TableCell align="left">
+                          <Label color={(sex === 'female' && 'error') || 'success'}>{sex.charAt(0)}</Label>
+                        </TableCell>
 
                          <TableCell align="left">{phones}</TableCell>
 
@@ -329,7 +341,7 @@ export default function PatientPage() {
         fullWidth
       >
         <DialogTitle>
-          <Typography>Ajouter un Parent (ou Tuteur)</Typography>
+          Ajouter un Parent (ou Tuteur)
         </DialogTitle>
         <DialogContent>
         <Container sx={{pt: 2}} >

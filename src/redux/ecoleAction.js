@@ -2,7 +2,7 @@
 import { addEcoleFailure, addEcoleStart, addEcoleSuccess } from './ecoleReducer';
 
 
-export const ecoleAction = (nom, phone, address, email, website, imgUrl) => async (dispatch) => {
+export const ecoleAction = (nom, phone, address, email, website, imgUrl, id, timestamp) => async (dispatch) => {
   try {
     dispatch(addEcoleStart());
 
@@ -16,7 +16,7 @@ export const ecoleAction = (nom, phone, address, email, website, imgUrl) => asyn
     // Dispatch loginSuccess action with response data
     // dispatch(addEcoleSuccess(response.data)); // TODO : USE NETWORK
 
-    dispatch(addEcoleSuccess({name: nom, phones: [...phone], address, email, website, imgUrl, id:"12355", timestamp: "2023-01-01"})) // TODO : Just for test!
+    dispatch(addEcoleSuccess({name: nom, phones: [...phone], address, email, website, imgUrl, id: id=== undefined ? "1235" : id, timestamp: timestamp=== undefined ? "2023-01-01" : timestamp})) // TODO : Just for test!
 
   } catch (error) {
     console.log(error);

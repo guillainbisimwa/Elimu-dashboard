@@ -54,7 +54,7 @@ export default function ParentListToolbar({ numSelected, filterName, onFilterNam
         <StyledSearch
           value={filterName}
           onChange={onFilterName}
-          placeholder="Search patients..."
+          placeholder="Search Parents..."
           startAdornment={
             <InputAdornment position="start">
               <Iconify icon="eva:search-fill" sx={{ color: 'text.disabled', width: 20, height: 20 }} />

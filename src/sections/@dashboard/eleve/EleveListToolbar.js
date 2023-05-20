@@ -54,7 +54,7 @@ export default function EleveListToolbar({ numSelected, filterName, onFilterName
         <StyledSearch
           value={filterName}
           onChange={onFilterName}
-          placeholder="Search patients..."
+          placeholder="Search Eleves..."
           startAdornment={
             <InputAdornment position="start">
               <Iconify icon="eva:search-fill" sx={{ color: 'text.disabled', width: 20, height: 20 }} />

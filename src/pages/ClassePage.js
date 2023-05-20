@@ -38,10 +38,8 @@ import { store } from '../redux/Store';
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
-  { id: 'email', label: 'Email', alignRight: false },
-  { id: 'phones', label: 'Phones', alignRight: false },
-  { id: 'address', label: 'Address', alignRight: false },
-  { id: 'website', label: 'Website', alignRight: false },
+  { id: 'ecole', label: 'Ecole', alignRight: false },
+  { id: 'anneeScolaire', label: 'Annee Scolaire', alignRight: false },
   { id: '' },
 ];
 
@@ -209,7 +207,7 @@ export default function ClassePage() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, email, phones, address, website } = row;
+                    const { id, name, anneeScolaire, ecole } = row;
                     const selectedUser = selected.indexOf(name) !== -1;
 
                     return (
@@ -230,14 +228,10 @@ export default function ClassePage() {
                           </Stack>
                         </TableCell>
 
-                         <TableCell align="left">{email}</TableCell>
+                         <TableCell align="left">{ecole.name}</TableCell>
 
-                         <TableCell align="left">{phones}</TableCell>
+                         <TableCell align="left">{anneeScolaire.name}</TableCell>
 
-                         <TableCell align="left">{address}</TableCell>
-
-                         <TableCell align="left">{website}</TableCell>
-                        
                         <TableCell align="right">
                           <IconButton size="large" color="inherit" onClick={(e)=>{
                               handleOpenMenu(e, row);
@@ -328,9 +322,8 @@ export default function ClassePage() {
         maxWidth="sm"
         fullWidth
       >
-        <DialogTitle>
-          <Typography>Ajouter une Classe</Typography>
-        </DialogTitle>
+        
+        <DialogTitle>Ajouter une Classe</DialogTitle>
         <DialogContent>
         <Container sx={{pt: 2}} >
           <AddClasse onClose={handleCloseModaClasse} />

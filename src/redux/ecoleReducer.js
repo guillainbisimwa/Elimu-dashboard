@@ -19,18 +19,7 @@ export const fetchEcole = createAsyncThunk(
 const ecoleSlice = createSlice({
   name: "ecole",
   initialState: {
-    ecoleList: [
-      {
-        id: "123",
-        name: "Institut Mwanga",
-        phones: ["+2145654852"],
-        imgUrl: null,
-        email:"test@me.com",
-        address:"Q. Mapendo",
-        website: "www.test.me",
-        timestamp: "2023-01-01",
-      }
-    ],
+    ecoleList: [],
     isLoadingEcole: false,
     errorEcole: null,
   },
@@ -66,7 +55,7 @@ const ecoleSlice = createSlice({
       })
       .addCase(fetchEcole.rejected, (state, action) => {
         state.isLoadingEcole = false;
-        state.errorEcole = action.errorEcole.message;
+        state.errorEcole = action.payload;
       });
   },
 });

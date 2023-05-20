@@ -19,16 +19,7 @@ export const fetchCommunication = createAsyncThunk(
 const communicationSlice = createSlice({
   name: "communication",
   initialState: {
-    communicationList: [
-      {
-        id: "123",
-        motif: "Frais 1 ere tranche",
-        anneeScolaire: "123",
-        eleve: "123",
-        parent: "123",
-        timestamp: "2023-01-01",
-      }
-    ],
+    communicationList: [],
     isLoadingCommunication: false,
     errorCommunication: null,
   },
@@ -64,7 +55,7 @@ const communicationSlice = createSlice({
       })
       .addCase(fetchCommunication.rejected, (state, action) => {
         state.isLoadingCommunication = false;
-        state.errorCommunication = action.errorCommunication.message;
+        state.errorCommunication = action.payload;
       });
   },
 });
